@@ -6,6 +6,8 @@ int staticSizeMin = 1;
 int staticSizeMax = 3;
 color staticColor = color(200);  
 
+int colorChange = 255;
+
 int paddleX;
 int paddleY;
 int paddleVX;
@@ -45,8 +47,9 @@ void setupBall() {
 }
 
 void draw() {
-  background(backgroundColor);   
-  
+ //frameRate(50);
+  //background(backgroundColor);   
+  changeColor();
   drawStatic(); 
 
   updatePaddle();
@@ -54,7 +57,6 @@ void draw() {
 
   drawPaddle();
   drawBall();
-  
 }
 
 
@@ -68,6 +70,17 @@ void drawStatic() {
    rect(x,y,staticSize,staticSize);
   }
 }
+
+//CHANGE   
+void changeColor(){                                        //I gave the background a flashing background using random colours
+
+for (int i =0; i < 255; i++){
+  background((random(0,255)),(random(0,100)), (random(0, 200))) ;
+ 
+}
+}
+
+
 void updatePaddle() {
   paddleX += paddleVX;  
   paddleX = constrain(paddleX,0+paddleWidth/2,width-paddleWidth/2);
@@ -81,15 +94,17 @@ void updateBall() {
   handleBallHitPaddle();       
   handleBallHitWall();
   handleBallOffBottom();
-  
 }
 
 
 void drawPaddle() {
+  for (int i =0; i < 255; i++){
   rectMode(CENTER);
   noStroke();
   fill(paddleColor);
-  rect(paddleX, paddleY, paddleWidth, paddleHeight);
+  rect(paddleX, paddleY, paddleWidth, paddleHeight);}
+  
+ 
 }
 
 
@@ -100,24 +115,14 @@ void drawBall() {
   rect(ballX, ballY, ballSize, ballSize);
 }
 
-//CHANGED
+
 void handleBallHitPaddle() {
   if (ballOverlapsPaddle()) {
     ballY = paddleY - paddleHeight/2 - ballSize/2;
-    ballVY = -ballVY*2;                                                   //I made the ball go faster
-    drawBall2();                                                          //I had a new ball "appear" on the screen (it doesn't react with the paddle however)
-    
+    ballVY = -ballVY;
   }
 }
 
-//CHANGED
-void drawBall2() {                                                        //the draw code for the new "ball"
-  ellipseMode(CENTER);
-  noStroke();
-  fill(255,0,0);
-  ellipse(random(ballX), random(ballY), ballSize, ballSize);
-  
-}
 boolean ballOverlapsPaddle() {
   if (ballX - ballSize/2 > paddleX - paddleWidth/2 && ballX + ballSize/2 < paddleX + paddleWidth/2) {
     if (ballY > paddleY - paddleHeight/2) {

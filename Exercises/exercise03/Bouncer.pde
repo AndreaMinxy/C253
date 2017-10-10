@@ -38,6 +38,7 @@ class Bouncer {
    handleMouse();
  }
  
+ //CHANGED: when the bouncer hits the wall, it goes to the opposite end of the screen (top and bottom) at its inverse x,y position
  /*sets up the conditions for how the ball will react when it hits or passes the "walls'" positions (left, right, bottom and top of the screen)*/
  void handleBounce() {
    if (x - size/2 < 0 || x + size/2 > width) {
@@ -46,6 +47,7 @@ class Bouncer {
    
    if (y - size/2 < 0 || y + size/2 > height) {
      vy = -vy;
+     y= -y;
    }
    
    /*limits the x and y position within the screen by defining the value that needs to be contrained, the minimum limit and the maximum limit

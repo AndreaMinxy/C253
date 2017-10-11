@@ -6,6 +6,9 @@
 class Ball {
 
   /////////////// Properties ///////////////
+  
+  //the number of hits on the blocks
+  int HIT =0;
 
   // Default values for speed and size
   int SPEED = 5;
@@ -60,6 +63,10 @@ class Ball {
       // If it is, then make it "bounce" by reversing its velocity
       vy = -vy;
     }
+    if (x - SIZE/2 < 0 || x + SIZE/2 > width) {
+      // If it is, then make it "bounce" by reversing its velocity
+      vx = -vx;
+    }
   }
   
   // reset()
@@ -80,9 +87,9 @@ class Ball {
   // something like an int (e.g. 0 = not off, 1 = off left, 2 = off right)
   // or a String (e.g. "ON SCREEN", "OFF LEFT", "OFF RIGHT")
   
-  boolean isOffScreen() {
+ /* boolean isOffScreen() {
     return (x + SIZE/2 < 0 || x - SIZE/2 > width);
-  }
+  }*/
 
   // collide(Paddle paddle)
   //
@@ -94,7 +101,7 @@ class Ball {
     // Calculate possible overlaps with the paddle side by side
     boolean insideLeft = (x + SIZE/2 > paddle.x - paddle.WIDTH/2);
     boolean insideRight = (x - SIZE/2 < paddle.x + paddle.WIDTH/2);
-    boolean insideTop = (y + SIZE/2 > paddle.y - paddle.HEIGHT/2);
+    boolean insideTop = (y + SIZE/2 > paddle.y - paddle.HEIGHT/2);            
     boolean insideBottom = (y - SIZE/2 < paddle.y + paddle.HEIGHT/2);
     
     // Check if the ball overlaps with the paddle
@@ -111,12 +118,45 @@ class Ball {
       vx = -vx;
     }
   }
+  
+  //Coliding with the blocks
+  boolean collide(Block block) {
+    // Calculate possible overlaps with the paddle side by side
+    boolean insideLeft = (x + SIZE/2 > block.x - block.WIDTH/2);
+    boolean insideRight = (x - SIZE/2 < block.x + block.WIDTH/2);
+    boolean insideTop = (y + SIZE/2 > block.y - block.HEIGHT/2);              
+    boolean insideBottom = (y - SIZE/2 < block.y + block.HEIGHT/2);
+    
+    // Check if the ball overlaps with the blocks
+    if (insideLeft && insideRight && insideTop && insideBottom) {
+      // If it was moving to the left
+      if (vx < 0) {
+        // Reset its position to align with the right side of the paddle
+        x = block.x + block.WIDTH/2 + SIZE/2;
+        //enlarge the size of the block
+        block.HEIGHT +=20;
+        block.WIDTH +=2;
+      } else if (vx > 0) {
+        // Reset its position to align with the left side of the paddle
+        x = block.x - block.WIDTH/2 - SIZE/2;
+         block.HEIGHT +=20;
+         block.WIDTH +=2;
+         HIT ++;
+      }
+      // And make it bounce
+      vx = -vx;
+      return true;
+    }
+    return false;
+  }
+
+
 
   // display()
   //
   // Draw the ball at its position
 
-  void display() {
+  void display() { 
     // Set up the appearance of the ball (no stroke, a fill, and rectMode as CENTER)
     noStroke();
     fill(ballColor);
@@ -125,4 +165,9 @@ class Ball {
     // Draw the ball
     rect(x, y, SIZE, SIZE);
   }
+
+
+void drawVar(){
+  println(HIT);
+}
 }

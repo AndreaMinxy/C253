@@ -8,7 +8,8 @@ class Ball {
   /////////////// Properties ///////////////
   
   //the number of hits on the blocks
-  int HIT =0;
+  int HITright =0;
+  int HITleft =0;
 
   // Default values for speed and size
   int SPEED = 5;
@@ -23,7 +24,7 @@ class Ball {
   int vy;
 
   // The colour of the ball
-  color ballColor = color(255);
+  int ballColor;
 
 
   /////////////// Constructor ///////////////
@@ -37,11 +38,12 @@ class Ball {
   // NOTE that I'm using an underscore in front of the arguments to distinguish
   // them from the class's properties
 
-  Ball(int _x, int _y) {
+  Ball(int _x, int _y, int _color) {
     x = _x;
     y = _y;
     vx = SPEED;
     vy = SPEED;
+    ballColor = _color;
   }
 
 
@@ -133,15 +135,16 @@ class Ball {
       if (vx < 0) {
         // Reset its position to align with the right side of the paddle
         x = block.x + block.WIDTH/2 + SIZE/2;
-        //enlarge the size of the block
+        //enlarge the size of the block and increase the number of hits being wirtten down by 1
         block.HEIGHT +=20;
         block.WIDTH +=2;
+        HITleft++;
       } else if (vx > 0) {
         // Reset its position to align with the left side of the paddle
         x = block.x - block.WIDTH/2 - SIZE/2;
          block.HEIGHT +=20;
          block.WIDTH +=2;
-         HIT ++;
+         HITright ++;
       }
       // And make it bounce
       vx = -vx;
@@ -168,6 +171,6 @@ class Ball {
 
 
 void drawVar(){
-  println(HIT);
+  println(HITright);
 }
 }

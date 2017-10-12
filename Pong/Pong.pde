@@ -1,20 +1,19 @@
 // Feminist Pong
 //
-// A simple version of Pong using object-oriented programming.
+// A different version of Pong using object-oriented programming.
 // Allows to people to bounce a ball back and forth between
-// two paddles that they control.
+// two opposing forces that they control: Feminism and the Patriarchy. 
+//Who will win? 
 //
-// No scoring. (Yet!)
-// No score display. (Yet!)
-// Pretty ugly. (Now!)
-// Only two paddles. (So far!)
 
-// Global variables for the paddles and the ball
+
+// Global variables for the paddles, the ball and the blocks
 Paddle leftPaddle;
 Paddle rightPaddle;
 Block rightBlock;                                                    //added (both)
 Block leftBlock;
-Ball ball;
+Ball blueBall;
+Ball pinkBall;
 //Text text;
 
 // The distance from the edge of the window a paddle should be
@@ -22,7 +21,13 @@ Ball ball;
 int PADDLE_INSET = 50;
 
 // The background colour during play (black)
-color backgroundColor = color(0);
+color blueBallColor = color(13, 229, 255);
+color pinkBallColor = color(255, 13, 231);
+
+
+//Initializing the backgrounf image
+PImage bg;
+int y;
 
 //declares the scoreboard
 String s = "FAT-O-METER";
@@ -33,10 +38,11 @@ String s = "FAT-O-METER";
 
 void setup() {
   // Set the size
-  size(640, 480);
-   //scorebaord
+  size(600, 400);
+  bg = loadImage("https://littlegayblog.com/wp-content/uploads/2017/04/Gay-Rights-Feminsim.png");
 
-  
+
+
   // Create the paddles on either side of the screen. 
   // Use PADDLE_INSET to to position them on x, position them both at centre on y
   // Also pass through the two keys used to control 'up' and 'down' respectively
@@ -49,7 +55,8 @@ void setup() {
   //text = new Text();
 
   // Create the ball at the centre of the screen
-  ball = new Ball(width/2, height/2);
+  pinkBall = new Ball(width/2, height/2, pinkBallColor);
+  blueBall = new Ball(width/2, height/2, blueBallColor);
 }
 
 // draw()
@@ -59,50 +66,58 @@ void setup() {
 
 void draw() {
   // Fill the background each frame so we have animation
-
-  background(backgroundColor);
-  
+  //Fill the background with the predefined image
+  background(bg);
+  y++;
+  if (y > height) {
+    y = 0;
+  }
   //scorebaord display
   //scorebaord title
-  //text.display();
-  
-  
+  //text(s);
 
   //demonstrating the values of the collisons
- //ball.drawVar();
+  blueBall.drawVar();
 
   // Update the paddles and ball by calling their update methods
   leftPaddle.update();
   rightPaddle.update();
-  ball.update();
+  blueBall.update();
+  pinkBall.update();
   leftBlock.update();
   rightBlock.update();
 
   // Check if the ball has collided with either paddle
-  ball.collide(leftPaddle);
-  ball.collide(rightPaddle);
-  ball.collide(rightBlock);                                  //calls the collide function
-  ball.collide(leftBlock);
+  blueBall.collide(leftPaddle);
+  blueBall.collide(rightPaddle);
+  blueBall.collide(rightBlock);                                  //calls the collide function
+  blueBall.collide(leftBlock);
   leftBlock.endGame();
   rightBlock.endGame();                                     //put an if statement to see if it will work?
 
-/*if (ball.collide(rightBlock)){
-  text.changePlayer2();
-}*/
+  if (pinkBall.HITright > 20) {
+    noLoop();
+    text("You Lose", width/2, 20);
+    textSize(100);
+  }
+  /*if (ball.collide(rightBlock)){
+   text.changePlayer2();
+   }*/
 
-/*if (ball.collide(leftBlock)){
-  text.changePlayer1();
-}
+  /*if (ball.collide(leftBlock)){
+   text.changePlayer1();
+   }
   /* Check if the ball has gone off the screen
-  if (ball.isOffScreen()) {
-    // If it has, reset the ball
-    ball.reset();
-  }*/
+   if (ball.isOffScreen()) {
+   // If it has, reset the ball
+   ball.reset();
+   }*/
 
   // Display the paddles and the ball
   leftPaddle.display();
   rightPaddle.display();
-  ball.display();
+  blueBall.display();
+  pinkBall.display();
   rightBlock.display();
   leftBlock.display();
 }

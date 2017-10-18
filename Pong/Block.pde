@@ -5,6 +5,9 @@
 class Block {
   int HEIGHT = 70;
   int WIDTH = 16;
+  
+  //end game boolean
+  boolean endGame;
   /////////////// Properties ///////////////
 
 
@@ -13,11 +16,11 @@ class Block {
   int y;
   int vx;
   int vy;
-  color blockColor = color(255, 70, 100);
+  int blockColor;
 
-  
 
- 
+
+
   /////////////// Constructor ///////////////
 
   //  Block(int _x, int _y, int _size, int _color)
@@ -25,12 +28,10 @@ class Block {
   // Sets the position and controls based on arguments,
   // starts the velocity at 0
 
-  Block(int _x, int _y) {
+  Block(int _x, int _y, int _bColor) {
     x = _x;
     y = _y;
-    
-
-    
+    blockColor =_bColor;
   }
 
 
@@ -43,28 +44,33 @@ class Block {
   void update() {
 
     // Constrain the block's y position to be in the window
-    y = constrain(y,0 + HEIGHT/2,height - HEIGHT/2);
-    
-    endGame();
+    //y = constrain(y, 0 + HEIGHT/2, height - HEIGHT/2);
+
   }
-  
-void endGame(){
-  if(HEIGHT > height || HEIGHT < height) {
-  fill(255, 0, 0);}
+
+  void endGame (){ 
+  if(HEIGHT > 400){
+    endGame = true;
+    noLoop();
+  }
 }
+
+
   // display()
   //
   // Display the paddle at its location
-  
+
   void display() {
     // Set display properties
     noStroke();
     fill(blockColor);
     rectMode(CENTER);
-    
+
     // Draw the paddle as a rectangle
     rect(x, y, WIDTH, HEIGHT);
   }
-
   
+  void drawPos() {
+  println(HEIGHT);
+}
 }

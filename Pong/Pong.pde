@@ -14,30 +14,35 @@ Block rightBlock;                                                    //added (bo
 Block leftBlock;
 Ball blueBall;
 Ball pinkBall;
-//Text text;
+Text text;
+
 
 // The distance from the edge of the window a paddle should be
 
 int PADDLE_INSET = 50;
 
-// The background colour during play (black)
-color blueBallColor = color(13, 229, 255);
-color pinkBallColor = color(255, 13, 231);
+// The colour of the balls during the game
+color blueBallColor = color(13, 229, 255);  //patriarchy side
+color pinkBallColor = color(255, 13, 231);  //feminism side
 
+//the colour of the blocks during the game
+color leftBlockColor = color(70, 70, 255);    //patriarchy side
+color rightBlockColor = color(200, 70, 100);    //feminism side
 
-//Initializing the backgrounf image
+//Initializing the background image
 PImage bg;
 int y;
 
-//declares the scoreboard
-String s = "FAT-O-METER";
+//Seting up the boolean that tracks when the game starts and wehn it ends
+boolean gameIsOver = false;
+
 
 // setup()
 //
 // Sets the size and creates the paddles and ball
 
 void setup() {
-  // Set the size
+  // Set the size and background
   size(600, 400);
   bg = loadImage("https://littlegayblog.com/wp-content/uploads/2017/04/Gay-Rights-Feminsim.png");
 
@@ -48,14 +53,16 @@ void setup() {
   // Also pass through the two keys used to control 'up' and 'down' respectively
   // NOTE: On a mac you can run into trouble if you use keys that create that popup of
   // different accented characters in text editors (so avoid those if you're changing this)
-  leftPaddle = new Paddle(PADDLE_INSET, height/2, '1', 'q');
-  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, '0', 'p');
-  rightBlock = new Block(8, height/2);
-  leftBlock = new Block(width-8, height/2);
-  //text = new Text();
+  leftPaddle = new Paddle(PADDLE_INSET, height/2, 'p', 'l');
+  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'q', 'a');
+  rightBlock = new Block(width-8, height/2, rightBlockColor);
+  leftBlock = new Block(8, height/2, leftBlockColor);
+  text = new Text();
+
+
 
   // Create the ball at the centre of the screen
-  pinkBall = new Ball(width/2, height/2, pinkBallColor);
+  pinkBall = new Ball(height/2, width/2, pinkBallColor);
   blueBall = new Ball(width/2, height/2, blueBallColor);
 }
 
@@ -65,6 +72,13 @@ void setup() {
 // if the ball has hit a paddle, and displaying everything.
 
 void draw() {
+
+  //demonstrating the position of the balls (x position) and the blocks (y position)
+  //blueBall.drawPos();
+  //pinkBall.drawPos();
+  rightBlock.drawPos();
+  leftBlock.drawPos();
+
   // Fill the background each frame so we have animation
   //Fill the background with the predefined image
   background(bg);
@@ -72,12 +86,26 @@ void draw() {
   if (y > height) {
     y = 0;
   }
-  //scorebaord display
-  //scorebaord title
-  //text(s);
 
+  //Patriarchy section
+  textSize(26);
+  fill(255);
+  text("PATRIARCHY", 80, 30);
+
+  //Feminism section
+  textSize(26);
+  fill(255);
+  text("FEMINISM", 380, 30);
+
+  //scorebaord display
+  if (gameIsOver == true) {
+    text.display();
+    text.endPlayer1();
+    text.endPlayer2();
+  }
   //demonstrating the values of the collisons
-  blueBall.drawVar();
+  //blueBall.drawVar();
+  //blueBall.drawPos();
 
   // Update the paddles and ball by calling their update methods
   leftPaddle.update();
@@ -86,40 +114,78 @@ void draw() {
   pinkBall.update();
   leftBlock.update();
   rightBlock.update();
+  
+  
+//triggering the change of text with the collisons
+  if (pinkBall.collide(leftBlock)) {
+    text.changePlayer2();
+  }
+
+  if (blueBall.collide(rightBlock)) {
+    text.changePlayer1();
+  }
+
+
 
   // Check if the ball has collided with either paddle
   blueBall.collide(leftPaddle);
-  blueBall.collide(rightPaddle);
-  blueBall.collide(rightBlock);                                  //calls the collide function
-  blueBall.collide(leftBlock);
-  leftBlock.endGame();
-  rightBlock.endGame();                                     //put an if statement to see if it will work?
+  blueBall.collide(rightPaddle);                                 //calls the collide function
+  pinkBall.collide(leftPaddle);
+  pinkBall.collide(rightPaddle);
+  pinkBall.collide(leftBlock);             //can only collide with the left/blue block
+  blueBall.collide(rightBlock);            //can only collide with the right/pink block
 
-  if (pinkBall.HITright > 20) {
+
+
+
+  //triggering the endgame
+
+  /*if (rightBlock.endGame) {
+    textAlign(CENTER);
+    textSize(26);
+    fill(255);
+    text("PATRIARCHY WINS!", width/2, 100);
     noLoop();
-    text("You Lose", width/2, 20);
-    textSize(100);
+    gameIsOver = true;
   }
-  /*if (ball.collide(rightBlock)){
-   text.changePlayer2();
-   }*/
+  
+   if (leftBlock.endGame) {
+    textAlign(CENTER);
+    textSize(26);
+    fill(255);
+    text("PATRIARCHY WINS!", width/2, 100);
+    noLoop();
+    gameIsOver = true;
+  }
+  */
 
-  /*if (ball.collide(leftBlock)){
-   text.changePlayer1();
+   if (blueBall.HITright > 16) {
+   textAlign(CENTER);
+   textSize(26);
+   fill(255);
+   text("PATRIARCHY WINS!", width/2, 100);
+   noLoop();
+   gameIsOver = true;
    }
-  /* Check if the ball has gone off the screen
-   if (ball.isOffScreen()) {
-   // If it has, reset the ball
-   ball.reset();
-   }*/
+   
+   if (pinkBall.HITleft > 16) {
+   textAlign(CENTER);
+   textSize(26);
+   fill(255);
+   text("FEMINISM WINS!", width/2, 100);
+   noLoop();
+   gameIsOver = true;
+   }
 
-  // Display the paddles and the ball
+
+  // Display the paddles, the blocks and the balls
   leftPaddle.display();
   rightPaddle.display();
   blueBall.display();
   pinkBall.display();
   rightBlock.display();
   leftBlock.display();
+  text.display();
 }
 
 // keyPressed()

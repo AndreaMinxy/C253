@@ -53,8 +53,9 @@ void setup() {
   // Also pass through the two keys used to control 'up' and 'down' respectively
   // NOTE: On a mac you can run into trouble if you use keys that create that popup of
   // different accented characters in text editors (so avoid those if you're changing this)
-  leftPaddle = new Paddle(PADDLE_INSET, height/2, 'p', 'l');
-  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'q', 'a');
+  //the commands for the each paddle are across the keyboard, so when you play with an opponent, it's extra hard (like trying to navigate these two ideologies)
+  leftPaddle = new Paddle(PADDLE_INSET, height/2, 'q', 'l');                            
+  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'p', 'a');               
   rightBlock = new Block(width-8, height/2, rightBlockColor);
   leftBlock = new Block(8, height/2, leftBlockColor);
   text = new Text();
@@ -87,22 +88,17 @@ void draw() {
     y = 0;
   }
 
-  //Patriarchy section
+  //Patriarchy section label
   textSize(26);
   fill(255);
   text("PATRIARCHY", 80, 30);
 
-  //Feminism section
+  //Feminism section label
   textSize(26);
   fill(255);
   text("FEMINISM", 380, 30);
 
-  //scorebaord display
-  if (gameIsOver == true) {
-    text.display();
-    text.endPlayer1();
-    text.endPlayer2();
-  }
+
   //demonstrating the values of the collisons
   //blueBall.drawVar();
   //blueBall.drawPos();
@@ -114,9 +110,9 @@ void draw() {
   pinkBall.update();
   leftBlock.update();
   rightBlock.update();
-  
-  
-//triggering the change of text with the collisons
+
+
+  //triggering the change of text with the collisons
   if (pinkBall.collide(leftBlock)) {
     text.changePlayer2();
   }
@@ -128,19 +124,23 @@ void draw() {
 
 
   // Check if the ball has collided with either paddle
+  //calls the collide functions
   blueBall.collide(leftPaddle);
-  blueBall.collide(rightPaddle);                                 //calls the collide function
+  blueBall.collide(rightPaddle);                              
   pinkBall.collide(leftPaddle);
   pinkBall.collide(rightPaddle);
   pinkBall.collide(leftBlock);             //can only collide with the left/blue block
   blueBall.collide(rightBlock);            //can only collide with the right/pink block
 
 
+  //winner display (I tried to erase the scoreboard it didn't really work
+  if (gameIsOver == true) { 
+    text.endPlayer1();
+    text.endPlayer2();
+  }
 
-
-  //triggering the endgame
-
-  /*if (rightBlock.endGame) {
+  //triggering the endgame and displaying the winning team
+  if (blueBall.HITright > 16) {
     textAlign(CENTER);
     textSize(26);
     fill(255);
@@ -148,34 +148,15 @@ void draw() {
     noLoop();
     gameIsOver = true;
   }
-  
-   if (leftBlock.endGame) {
+
+  if (pinkBall.HITleft > 16) {
     textAlign(CENTER);
     textSize(26);
     fill(255);
-    text("PATRIARCHY WINS!", width/2, 100);
+    text("FEMINISM WINS!", width/2, 100);
     noLoop();
     gameIsOver = true;
   }
-  */
-
-   if (blueBall.HITright > 16) {
-   textAlign(CENTER);
-   textSize(26);
-   fill(255);
-   text("PATRIARCHY WINS!", width/2, 100);
-   noLoop();
-   gameIsOver = true;
-   }
-   
-   if (pinkBall.HITleft > 16) {
-   textAlign(CENTER);
-   textSize(26);
-   fill(255);
-   text("FEMINISM WINS!", width/2, 100);
-   noLoop();
-   gameIsOver = true;
-   }
 
 
   // Display the paddles, the blocks and the balls

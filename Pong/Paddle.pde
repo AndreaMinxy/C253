@@ -1,4 +1,4 @@
-// Paddle
+// Paddle (nothing has changed)
 //
 // A class that defines a paddle that can be moved up and down on the screen
 // using keys passed through to the constructor.

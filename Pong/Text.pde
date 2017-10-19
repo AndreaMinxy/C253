@@ -4,12 +4,14 @@ class Text {
 
   //player 1 (on the left) 
   String[] playerLeftBlock = new String[21]; 
-  //player's 2 awckawrd love text when they score a ponit.
+  //player's 2 (on the right)
   String[] playerRightBlock = new String[21];        
 
+//variable for the arrays
   int textNumberForP1;
   int textNumberForP2;
 
+//Everything the Patrairchy says
   Text() {
     playerLeftBlock[0] = "...";
     playerLeftBlock[1] = "Priviledge doesn't exist";
@@ -33,7 +35,7 @@ class Text {
     playerLeftBlock[19] = "Bras are necessary";
     playerLeftBlock[20] = "Sensitivity is a weakness";
 
-
+//Everything Feminism says
     playerRightBlock[0] = "...";
     playerRightBlock[1] = "#YesAllWomen!";
     playerRightBlock[2] = "TransRightsAreHumanRights";
@@ -57,36 +59,40 @@ class Text {
     playerRightBlock[20] = "moms are amazing";
   }
 
+
+//actually displays the text on screen
   void display()
   {
     textSize(15);
     fill(50, 50, 250);
     text(playerLeftBlock[textNumberForP1], 50, 200);
     fill(214, 26, 120);
-    text(playerRightBlock[textNumberForP2], 330, 200);
+    text(playerRightBlock[textNumberForP2], 350, 200);
   }
 
   void changePlayer1() {    //The Patriarchy text changes (blue side)
 
-   
+
     textNumberForP1 =floor(random(1, 20));
   }
 
+//was supposed to erase the text when the game ended but couldn't figure out how to make it work
   void endPlayer1() {
 
-   textSize(0);
+    fill(0);
     exit();
   }
 
-  void changePlayer2() {      //the Feminsim text changes
+  void changePlayer2() {      //the Feminsim text changes (pink side)
 
-   
+
     textNumberForP2 = floor(random(1, 20));
   }
 
+//was supposed to erase the text when the game ended but couldn't figure out how to make it work
   void endPlayer2() {
 
-    textSize(0);
+    fill(0);
     exit();
   }
 }

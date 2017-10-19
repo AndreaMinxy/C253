@@ -57,18 +57,17 @@ class Ball {
   // and whether the ball has gone off the screen on either side.
 
   void update() {
-    //IS SUPPOSED TO KEEP THE X POSITION FROM EXCEEDING THE SCREEN WIDTH
-   // constrain(x, 0, 200);
 
     // First update the location based on the velocity (so the ball moves)
     x += vx;
     y += vy;
 
-    // Check if the ball is going off the top of bottom
+    // Check if the ball is going off the top or the bottom of the screen
     if (y - SIZE/2 < 0 || y + SIZE/2 > height) {
       // If it is, then make it "bounce" by reversing its velocity
       vy = -vy;
     }
+    // Check if the ball is going off the left or the right of the screen
     if (x - SIZE/2 < 0 || x + SIZE/2 > width) {
       // If it is, then make it "bounce" by reversing its velocity
       vx = -vx;
@@ -76,16 +75,6 @@ class Ball {
   }
 
 
-
-  // reset()
-  //
-  // Resets the ball to the centre of the screen.
-  // Note that it KEEPS its velocity
-
-  /*void reset() {
-   x = width/2;
-   y = height/2;
-   }*/
 
 
 
@@ -117,7 +106,7 @@ class Ball {
     }
   }
 
-  //Coliding with the blocks
+  //Coliding with the blocks nd moves the ball based on the type of collion
   boolean collide(Block block) {
     // Calculate possible overlaps with the block side by side
     boolean insideLeft = (x + SIZE/2 > block.x - block.WIDTH/3);
@@ -127,61 +116,55 @@ class Ball {
 
 
     // Check if the ball overlaps with the blocks
-   if (insideLeft && insideRight && insideTop && insideBottom) {
-      //if the balls are off screen
-     /* if (isOffScreen) {
-        x = width/2;
-        y = height/2;
-      
-    }*/
-    // If it was moving to the left
-    if (block.x < width/2) {
+    if (insideLeft && insideRight && insideTop && insideBottom) {
+      // If it was moving to the left
+      if (block.x < width/2) {
 
 
-      // Reset its position to align with the right side of the block
-      x = block.x + block.WIDTH/2 + SIZE/2;
-      //enlarge the size of the block and increase the number of hits being written down by 1
-      block.HEIGHT +=20;
-      block.WIDTH +=2;
-      HITleft++;
-    } else if (block.x > width/2) {
-      // Reset its position to align with the left side of the block
-      x = block.x - block.WIDTH/2 - SIZE/2;
-      block.HEIGHT +=20;
-      block.WIDTH +=2;
-      HITright ++;
+        // Reset its position to align with the right side of the block
+        x = block.x + block.WIDTH/2 + SIZE/2;
+        //enlarge the size of the block and increase the number of hits being written down by 1
+        block.HEIGHT +=20;
+        block.WIDTH +=2;
+        HITleft++;
+      } else if (block.x > width/2) {
+        // Reset its position to align with the left side of the block
+        x = block.x - block.WIDTH/2 - SIZE/2;
+        block.HEIGHT +=20;
+        block.WIDTH +=2;
+        HITright ++;
+      }
+      // And make it bounce
+      vx = -vx;
+      return true;
     }
-    // And make it bounce
-    vx = -vx;
-    return true;
+    return false;
   }
-  return false;
-}
 
 
 
-// display()
-//
-// Draw the ball at its position
+  // display()
+  //
+  // Draw the ball at its position
 
-void display() { 
-  // Set up the appearance of the ball (no stroke, a fill, and rectMode as CENTER)
-  noStroke();
-  fill(ballColor);
-  rectMode(CENTER);
+  void display() { 
+    // Set up the appearance of the ball (no stroke, a fill, and rectMode as CENTER)
+    noStroke();
+    fill(ballColor);
+    rectMode(CENTER);
 
-  // Draw the ball
-  rect(x, y, SIZE, SIZE);
-}
+    // Draw the ball
+    rect(x, y, SIZE, SIZE);
+  }
 
-//keeps track of the collisions
-void drawVar() {
-  //println(HITright);
-  println(HITleft);
-}
+  //keeps track of the collisions
+  void drawVar() {
+    //println(HITright);
+    println(HITleft);
+  }
 
-//keeps track of the balls x position
-void drawPos() {
-  println(x);
-}
+  //keeps track of the balls x position
+  void drawPos() {
+    println(x);
+  }
 }

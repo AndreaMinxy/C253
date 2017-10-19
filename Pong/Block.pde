@@ -48,17 +48,18 @@ class Block {
 
   }
 
-  void endGame (){ 
+//This didn't really work: was supposed to be the conditions for the endgame but failed to work for some reason
+  /*void endGame (){ 
   if(HEIGHT > 400){
     endGame = true;
     noLoop();
   }
-}
+}*/
 
 
   // display()
   //
-  // Display the paddle at its location
+  // Display the block at its location
 
   void display() {
     // Set display properties

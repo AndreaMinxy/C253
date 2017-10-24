@@ -21,6 +21,9 @@ void setup() {
   frameRate(10);
 
   // QUESTION: What does this for loop do?
+  /*it checks the size of the array (griddies.length), which is 100 and
+  check if i is smaller than it. If it is, then proceed with the code that follows 
+  (choose a random x and y position, and create a new griddie that alos uses the for loop to check the same circumstances))*/
   for (int i = 0; i < griddies.length; i++) {
     int x = floor(random(0, width/gridSize));
     int y = floor(random(0, height/gridSize));
@@ -44,8 +47,10 @@ void draw() {
     // Now go through all the griddies a second time...
     for (int j = 0; j < griddies.length; j++) {
       // QUESTION: What is this if-statement for?
+      //if j is not equal to i
       if (j != i) {
         // QUESTION: What does this line check?
+        //check if the i griddies and the j griddies collide
         griddies[i].collide(griddies[j]);
       }
     }

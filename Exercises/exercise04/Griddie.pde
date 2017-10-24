@@ -35,17 +35,25 @@ class Griddie {
   void update() {
     
     // QUESTION: What is this if-statement for?
+    /*If the value of energy is equal to 0, than send the value to
+    int energy*/
     if (energy == 0) {
       return;
     }
     
     // QUESTION: How does the Griddie movement updating work?
+    /*the x and y position results are created by multiplying the
+    size of the griddie with a random number between -1 and 1 (doesn't move much)*/
     int xMoveType = floor(random(-1,2));
     int yMoveType = floor(random(-1,2));
     x += size * xMoveType;
     y += size * yMoveType;
     
     // QUESTION: What are these if statements doing?
+    /*If the x position is smaller than/bigger or equal to the screen width, add/subtract the 
+    the width to/from the x position*/
+     /*If the  position is smaller than/bigger or equal to the screen height, add/subtract the 
+    the width to/from the y position*/
     if (x < 0) {
       x += width;
     }
@@ -74,11 +82,14 @@ class Griddie {
   
   void collide(Griddie other) {
     // QUESTION: What is this if-statement for?
+    /* if the energy of one or any other griddie is equal to zero (while they've collided), return
+    the value to the energy int*/
     if (energy == 0 || other.energy == 0) {
       return;
     }
     
     // QUESTION: What does this if-statement check?
+    /* checks if the x and y positions of the griddies are equal to the x y positions of the other griddies*/
     if (x == other.x && y == other.y) {
       // Increase this Griddie's energy
       energy += collideEnergy;
@@ -92,6 +103,7 @@ class Griddie {
   // Draw the Griddie on the screen as a rectangle
   void display() {
     // QUESTION: What does this fill line do?
+   //fill the shape of the griddie witth the fill colour and the value of the energy, now the opacity (rgba).
     fill(fill, energy); 
     noStroke();
     rect(x, y, size, size);

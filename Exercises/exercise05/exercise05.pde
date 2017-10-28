@@ -1,17 +1,24 @@
 //you see specific visuals based on the size of the screen
-//
+//you have to find specific random pets using noise and t based on the size of the screen
+//when you click on the pet, you get a point
 
-float t = 0;
-int x = 0;
+
+//Global Variables for the ball and the screens
+Ball ball;
+
+
+int x;
+int y;
+
 void setup() {
-  size(600,600);
-  background(0);
-  stroke(255);
+  size(500,500);
+  ball= new Ball( x = width/2, y = height/2);
+ 
 }
 void draw() {
-  float n = noise(t);
-  float r = random(0,1);
-  ellipse(x,n*height,5,5);
-  x++;
-  t += 10;
+  background(0);
+ ball.update();
+ ball.display();
+  
+  // Check for wrapping?
 }

@@ -1,5 +1,6 @@
-//you see specific visuals based on the size of the screen
-//you have to find specific random pets using noise and t based on the size of the screen
+//INVISIBLE TAG
+//There are certain light parts and dark parts of the screen
+//You can only see the pet on the light parts
 //when you click on the pet, you get a point
 
 
@@ -12,12 +13,13 @@ int y;
 
 void setup() {
   size(500,500);
-  ball= new Ball( x = width/2, y = height/2);
+  ball= new Ball( x = width/2, y = height/2, 20, 20);
  
 }
 void draw() {
   background(0);
  ball.update();
+ ball.checkBoundary();
  ball.display();
   
   // Check for wrapping?

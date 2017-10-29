@@ -28,7 +28,7 @@ class Ball {
   }
   
   //Code found online on an open source platform:
-  //checks if the object is off screen 
+  //checks if the object is off screen and makes it "wrap around" the screen.
   void checkBoundary() {
   if (x<-40) {
     x = width+39;

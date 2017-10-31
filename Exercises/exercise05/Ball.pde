@@ -8,12 +8,16 @@ class Ball {
   float y;
   int ballHeight;
   int ballWidth;
+  
+
+  
 
   Ball(int _x, int _y, int _height, int _width) {
     x = _x;
     y= _y;
     ballHeight = _height;
     ballWidth= _width;
+    
   }
 
   //taken from example noise code to create organic random movement
@@ -46,6 +50,7 @@ class Ball {
   }
 
   void display() {
+ fill(0);
     ellipse(x, y, ballWidth, ballHeight);
     tx += 0.01;
     ty += 0.01;

@@ -27,20 +27,21 @@ void setup() {
 }
 void draw() {
   background(0);
-  playBall.update();
-  playBall.checkBoundary();
-  playBall.display();
- 
-
-
-
-  screenOne.display();
-  screenTwo.display();
-  screenThree.display();
-
+  
   screenOne.update();
   screenTwo.update();
   screenThree.update();
+
+  screenOne.display();
+  screenTwo.display();
+  screenThree.display(); 
+  
+  playBall.update();
+  playBall.checkBoundary();
+  playBall.display();
+
+
+ 
 
   scoreDisplay();
 }
@@ -48,10 +49,11 @@ void draw() {
 
 //display the score on the screen
 void scoreDisplay() {
+  fill(255);
   text(scoreVis, 250, 50);
   textSize(50);
   textAlign(CENTER, CENTER);
-  fill(255);
+  
 }
 
 

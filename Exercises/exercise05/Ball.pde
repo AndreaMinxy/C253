@@ -1,6 +1,7 @@
+//create the Ball class
 class Ball {
 
-
+  //sets up the variables for the class
   float tx = random(0, 100);
   float ty = random(0, 100);
   float speed = 7;
@@ -8,16 +9,14 @@ class Ball {
   float y;
   int ballHeight;
   int ballWidth;
-  
 
-  
 
+  //sets up the arguments for the class
   Ball(int _x, int _y, int _height, int _width) {
     x = _x;
     y= _y;
     ballHeight = _height;
     ballWidth= _width;
-    
   }
 
   //taken from example noise code to create organic random movement
@@ -25,9 +24,8 @@ class Ball {
     println(mouseX);
     float vx = speed * (noise(tx) * 2 - 1);
     float vy = speed * (noise(ty) * 2 - 1);
-     x += vx;
+    x += vx;
     y += vy;
-   
   }
 
   //Code found online on an open source platform:
@@ -49,19 +47,18 @@ class Ball {
     //all move off screen
   }
 
+//sets up the look of the ball
   void display() {
- fill(0);
+    fill(0);
     ellipse(x, y, ballWidth, ballHeight);
     tx += 0.01;
     ty += 0.01;
   }
-  
-  //Counts the points when you click the ball
-   void mousePressed(){
-  if(dist(mouseX, mouseY, x, y) < ballWidth/2){
-    scoreVis ++;
-    } 
-    
-  }
 
+  //Counts the points when you click the ball
+  void mousePressed() {
+    if (dist(mouseX, mouseY, x, y) < ballWidth/2) {
+      scoreVis ++;
+    }
+  }
 }

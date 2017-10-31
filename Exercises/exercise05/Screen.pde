@@ -18,7 +18,7 @@ class Screen {
   }
 
   void update() {
-    println(x);
+  //creates the horizontal movements for the blocks/screens
     x += vx;
 
     if (x==499 || x>499) {
@@ -28,11 +28,11 @@ class Screen {
     }
   }
 
-
+//sets up the look of the screens
   void display() {
+    fill(255);
     rect(x, y, screenWidth, screenHeight);
     rectMode(CENTER);
-    fill(255);
     noStroke();
   }
 }

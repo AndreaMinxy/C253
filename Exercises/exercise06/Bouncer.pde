@@ -102,4 +102,12 @@ class Bouncer {
   
    }
    
+   void screenChange() {
+  loadPixels();
+  for (int i =0; i< pixels.length; i++) {
+    pixels[i] = color(random(40, 255));
+  }
+  updatePixels();
+}
+   
 }

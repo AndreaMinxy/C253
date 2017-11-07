@@ -59,7 +59,7 @@ void draw() {
   handleVideoInput();
 
   // Draw the video frame to the screen
-  image(video, 0, 0);
+  //image(video, 0, 0);
 
   // Our old friend the for-loop running through the length of an array to
   // update and display objects, in this case Bouncers.
@@ -70,13 +70,14 @@ void draw() {
     bouncers[i].display();
 
     //CHANGE: an if statement telling us what happens to the other bouncers when the brightest one is found
-    if (dist(brightestPixel.x, brightestPixel.y, x, y) <20/2) {
-      screenChange();
+    if (dist(brightestPixel.x, brightestPixel.y, bouncers[i].x, bouncers[i].y) < 100) {
+      
       bouncers[i].colorChange();
-      //bouncers[i].stayBack();
+      bouncers[i].stayBack();
     } else {
       bouncers[i].fillColor = bouncers[i].defaultColor;
-      bouncers[i].update();
+      //bouncers[i].screenChange();
+      //bouncers[i].update();
     }
   }
 
@@ -131,12 +132,4 @@ void handleVideoInput() {
       }
     }
   }
-}
-
-void screenChange() {
-  loadPixels();
-  for (int i =0; i< pixels.length; i++) {
-    pixels[i] = color(40, 255, 100, 20);
-  }
-  updatePixels();
 }

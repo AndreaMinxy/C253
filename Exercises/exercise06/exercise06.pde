@@ -68,17 +68,16 @@ void draw() {
 
     //CHANGE: an if statement telling us what happens to the other bouncers when the brightest one is found
     if (dist(brightestPixel.x, brightestPixel.y, bouncers[i].x, bouncers[i].y) < 100) {
-      
+      //CHANGE: calls the functions we want and when
       bouncers[i].colorChange();
       bouncers[i].stayBack();
-      //screenChange();
+      
     } else {
       bouncers[i].fillColor = bouncers[i].defaultColor;
     
     }
   }
 
-  //draw the background color
  
   // For now we just draw a crappy ellipse at the brightest pixel
   fill(#000000);
@@ -129,16 +128,7 @@ void handleVideoInput() {
       }
     }
   }
- 
+ //CHANGED: draw the background color
    background(#B9B8B8);
 
 }
-
-void screenChange() {
-  loadPixels();
-  for (int i =0; i< pixels.length; i++) {
-    pixels[i] = color(random(40, 255));
-  }
-  updatePixels();
-}
-   

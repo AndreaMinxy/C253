@@ -92,12 +92,14 @@ class Bouncer {
     theta +=0.1;
   }
 
+//CHANGE: changes the color of the bouncer 
   void colorChange() {
    fillColor = newColour;
    }
    
+   //changes the direction of the bouncers if they're too close to the brightest pixel
    void stayBack(){
-     if (x < brightestPixel.x+10 && y< brightestPixel.y+10 ){
+     if (x < brightestPixel.x+100 && y< brightestPixel.y+100 ){
     vx = -vx;
     vy = -vy;
      }

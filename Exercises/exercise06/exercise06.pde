@@ -51,10 +51,7 @@ void setup() {
 // do something much more interesting in order to actually interact with the Bouncers.
 
 void draw() {
-
-  //CHANGE: prints the distance between the pritest pixel and the torch
-  println(dist(brightestPixel.x, brightestPixel.y, x, y));
-
+  
   // A function that processes the current frame of video
   handleVideoInput();
 
@@ -81,8 +78,8 @@ void draw() {
     }
   }
 
-
-
+  //draw the background color
+ 
   // For now we just draw a crappy ellipse at the brightest pixel
   fill(#ff0000);
   stroke(#ffff00);
@@ -132,4 +129,16 @@ void handleVideoInput() {
       }
     }
   }
+ screenChange();
+   //background(#B9B8B8);
+
 }
+
+void screenChange() {
+  loadPixels();
+  for (int i =0; i< pixels.length; i++) {
+    pixels[i] = color(random(40, 255));
+  }
+  updatePixels();
+}
+   

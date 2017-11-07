@@ -97,9 +97,10 @@ class Bouncer {
    }
    
    void stayBack(){
-     x +=10;
-     y +=10;
-  
+     if (x < brightestPixel.x+10 && y< brightestPixel.y+10 ){
+    vx = -vx;
+    vy = -vy;
+     }
    }
    
    

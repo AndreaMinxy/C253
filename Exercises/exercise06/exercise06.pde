@@ -71,17 +71,17 @@ void draw() {
       
       bouncers[i].colorChange();
       bouncers[i].stayBack();
+      //screenChange();
     } else {
       bouncers[i].fillColor = bouncers[i].defaultColor;
-      //bouncers[i].screenChange();
-      //bouncers[i].update();
+    
     }
   }
 
   //draw the background color
  
   // For now we just draw a crappy ellipse at the brightest pixel
-  fill(#ff0000);
+  fill(#000000);
   stroke(#ffff00);
   strokeWeight(10);
   ellipse(brightestPixel.x, brightestPixel.y, 20, 20);
@@ -129,8 +129,8 @@ void handleVideoInput() {
       }
     }
   }
- screenChange();
-   //background(#B9B8B8);
+ 
+   background(#B9B8B8);
 
 }
 

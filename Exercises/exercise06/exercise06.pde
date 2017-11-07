@@ -71,8 +71,9 @@ void draw() {
 
     //CHANGE: an if statement telling us what happens to the other bouncers when the brightest one is found
     if (dist(brightestPixel.x, brightestPixel.y, x, y) <20/2) {
+      screenChange();
       bouncers[i].colorChange();
-      bouncers[i].stayBack();
+      //bouncers[i].stayBack();
     } else {
       bouncers[i].fillColor = bouncers[i].defaultColor;
       bouncers[i].update();
@@ -99,6 +100,7 @@ void handleVideoInput() {
     // If not, then just return, nothing to do
     return;
   }
+
 
   // If we're here, there IS a frame to look at so read it in
   video.read();
@@ -129,9 +131,12 @@ void handleVideoInput() {
       }
     }
   }
+}
 
-
-  /*for(int i =0; i< bouncers.length; i++ ){
-   bouncers[i].Rotate();
-   }*/
+void screenChange() {
+  loadPixels();
+  for (int i =0; i< pixels.length; i++) {
+    pixels[i] = color(40, 255, 100, 20);
+  }
+  updatePixels();
 }

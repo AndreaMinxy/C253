@@ -5,11 +5,14 @@ import processing.sound.*;
 //defining the array of tones
 SoundFile [] tone = new SoundFile[5]; 
 
+//the number of frames per beat, taken from Pippin's powerpoint
+int framePerBeat = 100;
 
 void setup(){
   //background size
   size(600, 500);
   
+  //go through the array and check every box
   for (int i = 0; i < tone.length; i++) {
     // We can use the i variable to work out which filename to use!
     tone[i] = new SoundFile(this, "tone0" + (i+1) + ".wav");
@@ -18,14 +21,16 @@ void setup(){
 }
 
 void draw(){
+  //color the background grey
   background(#CEC8C8);
   
-  //if(mouseX < width/2){
- 
-//}
+  //if the mouse is in the top left corner, play the first tone
+  if(mouseX < width/4 && mouseY < height/4 ){
+    tone[1].play();
+ }
 }
 
 void mouseClicked(){
   
-   tone[2].play();
+   
 }

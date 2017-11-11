@@ -2,22 +2,30 @@
 import processing.sound.*;
 // The SoundFile class comes with the library, it allows us to store
 // a sound in a variable (similar to PImage storing an image)
-SoundFile [] tone;
+//defining the array of tones
+SoundFile [] tone = new SoundFile[5]; 
 
-// We load a sound by creating a new SoundFile and giving it the path to the file
-  // Notice that sound file is in a subfolder called "sounds" - that's organised!
-  tone = new SoundFile[5];
+
+void setup(){
+  //background size
+  size(600, 500);
   
-void setup() {
-  
-  size(600, 640);
-  
-  for(int i = 0; i< tone.length; i++){
- tone[i] = new SoundFile(this, "tone0" + (i+1) + ".wav");
+  for (int i = 0; i < tone.length; i++) {
+    // We can use the i variable to work out which filename to use!
+    tone[i] = new SoundFile(this, "tone0" + (i+1) + ".wav");
   }
+  
 }
-void draw() {
- background(255);
- 
 
+void draw(){
+  background(#CEC8C8);
+  
+  //if(mouseX < width/2){
+ 
+//}
+}
+
+void mouseClicked(){
+  
+   tone[2].play();
 }

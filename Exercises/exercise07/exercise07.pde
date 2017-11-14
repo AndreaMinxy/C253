@@ -22,7 +22,7 @@ void setup() {
 
 
   //initilaizing the arguments
-  dot = new Dot(mouseX, mouseY, color(0,0,0));
+  dot = new Dot(mouseX, mouseY, color(0, 0, 0));
 
   //go through the array and check every box
   for (int i = 0; i < tone.length; i++) {
@@ -32,49 +32,52 @@ void setup() {
 }
 
 void draw() {
-  
-   //color the background grey
+
+
+  //color the background grey
   background(255, 255, 255);
- 
-   for(int i = 0; i < dots.size(); i++){ 
-   dots.get(i).update();
-   dots.get(i).display();
-   dots.get(i).checkBoundary();
-   
+
+  //draw the circle in the center
+  noFill();
+  stroke(0, 0, 0);
+  ellipse(width/2, height/2, 200, 200);
+
+  //draw the circle in the bottom left
+  noFill();
+  stroke(0, 0, 0);
+  ellipse(width/4, height-110, 100, 100);
+  
+  //draw the circle in the top right
+  noFill();
+  stroke(0, 0, 0);
+  ellipse(width-100, height-height+100, 100, 100);
+
+
+  //check the list of dots and update thei movement and display their form
+  for (int i = 0; i < dots.size(); i++) { 
+    dots.get(i).update();
+    dots.get(i).display();
+    //check the boundery boolean: if it's true set the replay boolean to true
+    if (dots.get(i).checkBoundary()) {
+      dots.get(i).replay = true;
+    }
+
+    //if the replay boolean is true, play the tunes based on the distance specified
+    if (dots.get(i).replay == true) {
+      if (dist(dots.get(i).x, dots.get(i).y, width/2, height/2) < 100) {
+        tone[4].play();
+        dots.get(i).replay = false;
+      } else if (dist(dots.get(i).x, dots.get(i).y, width/4, height-110) < 50) {
+        tone[2].play();
+      } else if (dist(dots.get(i).x, dots.get(i).y, width-100, height-height+100) < 50) {
+        tone[3].play();
+      }
+    }
   }
-    
 }
 
 
-
+//when the mouse is pressed, create a new dot
 void mousePressed() {
- dots.add(new Dot(mouseX, mouseY, color(0,0,0)));
- 
-  //if the mouse is in the top rightt corner, play the first tone
-  if (mouseX <= width/4 && mouseY <= height/4 ) {
-    tone[1].play();
- 
-  } 
-  //if the mouse is in the top left corner, play the second tone
-  if (mouseX >= width/4 && mouseY <= height/4 ) {
-    tone[2].play();
-  }
-
-  //if the mouse is in the bottom right corner, play the third tone
-  if (mouseX <= width/4 && mouseY >= height/4 ) {
-    tone[3].play();
-
-  }
-
-  //if the mouse is in the bottom left corner, play the fourth tone
-  if (mouseX >= width/4 && mouseY >= height/4 ) {
-    tone[4].play();
-  
-  }
-
-  //if the mouse is in the middle, play the fifth tone
-  if (mouseX == width/2 && mouseY == height/2 ) {
-    tone[5].play();
-   
-  }
+  dots.add(new Dot(mouseX, mouseY, color(0, 0, 0)));
 }

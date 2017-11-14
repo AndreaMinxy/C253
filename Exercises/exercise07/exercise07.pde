@@ -32,12 +32,16 @@ void setup() {
 }
 
 void draw() {
+  
+   //color the background grey
+  background(255, 255, 255);
  
    for(int i = 0; i < dots.size(); i++){ 
    dots.get(i).update();
    dots.get(i).display();
+   dots.get(i).checkBoundary();
    
-   }
+  }
     
 }
 

@@ -38,4 +38,23 @@ class Dot {
     fill(0,0,0);
     noStroke();
   }
+  
+   //Code found online on an open source platform:
+  //checks if the object is off screen and makes it "wrap around" the screen.
+  //source: https://openprocessing.org/sketch/52869
+  void checkBoundary() {
+    if (x<-40) {
+      x = width+39;
+    }
+    if (y<-40) {
+      y = height+39;
+    }
+    if (x>width+39) {
+      x = -40;
+    }
+    if (y>height+39) {
+      y = -40;
+    }
+    //all move off screen
+  }
 }

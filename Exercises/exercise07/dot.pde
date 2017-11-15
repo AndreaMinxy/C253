@@ -22,6 +22,7 @@ class Dot {
   //defines the colour of the dot
   color dotColor= color(0, 0, 0);
 
+//constructors of the dot
   Dot(int _x, int _y, color _color) {
 
     x=_x;
@@ -31,11 +32,13 @@ class Dot {
     vy= speed;
   }
 
+//move the ellipses towards the botom right
   void update() {
     x += vx;
     y += vy;
   }
 
+//draw the ellipses as specified
   void display() {
     fill(0, 0, 0);
     noStroke();

@@ -8,6 +8,7 @@ SoundFile [] tone = new SoundFile[5];
 //the number of frames per beat, taken from Pippin's powerpoint
 int framePerBeat = 10;
 
+//define the array list with the dot class
 ArrayList<Dot> dots = new ArrayList<Dot>();
 
 //defining the class
@@ -17,7 +18,7 @@ void setup() {
   //background size
   size(600, 500);
 
-  //color the background grey
+  //color the background white
   background(255, 255, 255);
 
 
@@ -33,8 +34,7 @@ void setup() {
 
 void draw() {
 
-
-  //color the background grey
+  //color the background white (over and over)
   background(255, 255, 255);
 
   //draw the circle in the center
@@ -46,7 +46,7 @@ void draw() {
   noFill();
   stroke(0, 0, 0);
   ellipse(width/4, height-110, 100, 100);
-  
+
   //draw the circle in the top right
   noFill();
   stroke(0, 0, 0);

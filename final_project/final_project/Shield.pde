@@ -1,6 +1,8 @@
-class Shield{
+class Shield {
 
-  void updte(){}
-  
-  void display(){}
+  void updte() {
+  }
+
+  void display() {
+  }
 }

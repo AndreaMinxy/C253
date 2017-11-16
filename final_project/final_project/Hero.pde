@@ -41,15 +41,14 @@ class Hero {
 
     // Constrain the avatar's x position to be in the game screen
     x = constrain(x, 0 + SIZE/2, width - SIZE/2);
-    
-    
+
+
     //load the image
     Bisexual =loadImage("flag02.png");
-
   }
 
   void display() {
-  
+
     //display the image
     imageMode(CENTER);
     image(Bisexual, x, y, SIZE, SIZE);

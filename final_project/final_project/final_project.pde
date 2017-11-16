@@ -7,17 +7,29 @@
 
 Hero hero;
 
-void setup(){
-  
+void setup() {
+
   //size and colour of the background
   size(1000, 600);
   background(255);
-  
-  hero = new Hero(width/2, height/2);
+
+  hero = new Hero(width/2, 550, 'a', 'l');
 }
 
-void draw(){
-  
+void draw() {
+  //redraw the background within each frame
+  background(255);
+
   hero.update();
   hero.display();
+}
+
+void keyPressed() {
+  // Call the hero's keyPressed methods
+  hero.keyPressed();
+}
+
+void keyReleased() {
+  // Call the hero's keyReleased methods
+  hero.keyReleased();
 }

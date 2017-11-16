@@ -35,17 +35,16 @@ class Hero {
     leftKey = _leftKey;
   }
 
-  void update() {
-
-    //load the image
-    Bisexual =loadImage("flag02.png");
-    
-    
+  void update() {    
     //update position with velocity to move the avatar
     x += vx;
 
     // Constrain the avatar's x position to be in the game screen
     x = constrain(x, 0 + SIZE/2, width - SIZE/2);
+    
+    
+    //load the image
+    Bisexual =loadImage("flag02.png");
 
   }
 
@@ -70,11 +69,11 @@ class Hero {
 
   void keyReleased() {
     // Check if the key is our right key and if the avatar is moving right
-    if (key == rightKey && vx < 0) {
+    if (key == rightKey && vx == SPEED) {
       // If so it should stop
       vx = 0;
     } // Otherwise check if the key is our left key and avatar is moving left
-    else if (key == leftKey && vx > 0) {
+    else if (key == leftKey && vx == -SPEED) {
       // If so it should stop
       vx = 0;
     }

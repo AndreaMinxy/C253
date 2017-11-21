@@ -4,6 +4,11 @@
 //x position, a y poistion, a vx and a vy for speed, and a width and  a height
 
 class Hero {
+  //defining the array list for the bullets/blasts
+  ArrayList <Blast> allBlast = new ArrayList<Blast>();
+
+  //the keys that makes the blast appear
+  char shootKey;
 
   //define the image
   PImage Bisexual;
@@ -19,20 +24,20 @@ class Hero {
   // The velocity of the flag
   int vx;
 
-
   //the keys that makes the avatar move
   char leftKey;
   char rightKey;
 
   //setting up the constructors
 
-  Hero(int _x, int _y, char _leftKey, char _rightKey) {
+  Hero(int _x, int _y, char _leftKey, char _rightKey, char _shootKey) {
 
     x =_x;
     y = _y;
     vx = SPEED;
     rightKey = _rightKey;
     leftKey = _leftKey;
+    shootKey = _shootKey;
   }
 
   void update() {    
@@ -42,9 +47,11 @@ class Hero {
     // Constrain the avatar's x position to be in the game screen
     x = constrain(x, 0 + SIZE/2, width - SIZE/2);
 
-
     //load the image
     Bisexual =loadImage("flag02.png");
+
+    //cal the handle blast function
+    handleBlast();
   }
 
   void display() {
@@ -52,6 +59,16 @@ class Hero {
     //display the image
     imageMode(CENTER);
     image(Bisexual, x, y, SIZE, SIZE);
+  }
+
+  void handleBlast() {
+    //check the list of dots and update thei movement and display their form
+    for (int i = 0; i < allBlast.size(); i++) { 
+      if (allBlast.get(i).update()) {
+        allBlast.remove(i);
+      }
+      allBlast.get(i).display();
+    }
   }
 
   void keyPressed() {
@@ -63,6 +80,10 @@ class Hero {
     else if (key == leftKey) {
       // If so we want a positive x velocity
       vx = -SPEED;
+    }
+
+    if (key == shootKey) {
+      allBlast.add(new Blast(x, y));
     }
   }
 

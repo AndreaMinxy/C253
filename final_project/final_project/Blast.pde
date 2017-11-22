@@ -31,7 +31,16 @@ class Blast {
   }
   
   boolean collide(Shield shield){
-    if(dist(x, y, shield.x, shield.y) < 10){
+    println("check");
+    // Calculate possible overlaps with the paddle side by side
+    boolean insideLeft = (x + SIZE/2 > shield.x - shield.WIDTH/2);
+    boolean insideRight = (x - SIZE/2 < shield.x + shield.WIDTH/2);
+    boolean insideTop = (y + SIZE/2 > shield.y - shield.HEIGHT/2);            
+    boolean insideBottom = (y - SIZE/2 < shield.y + shield.HEIGHT/2);
+
+    // Check if the ball overlaps with the paddle
+    if (insideLeft && insideRight && insideTop && insideBottom){
+      println("collison");
       return true;
     }
     return false;
@@ -40,6 +49,7 @@ class Blast {
   void display() {
     fill(#E828D2);
     noStroke();
+    rectMode(CENTER);
     rect(x, y, SIZE, SIZE);
   }
 }

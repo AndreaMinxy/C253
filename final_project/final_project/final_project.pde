@@ -6,6 +6,9 @@
 //tell who you can and can't like?
 
 Hero hero;
+Shield leftShield;
+Shield middleShield;
+Shield rightShield;
 
 void setup() {
 
@@ -14,27 +17,34 @@ void setup() {
   background(255);
 
   hero = new Hero(width/2, 550, 'a', 'l', 'f');
-
+  leftShield = new Shield(200, 500, color(#FFB2F1));
+  middleShield = new Shield(475, 500, color(#FFB2F1));
+  rightShield = new Shield(750, 500, color(#FFB2F1));
 }
 
 void draw() {
   //redraw the background within each frame
   background(255);
-  
+
   //text demo
-  fill(255, 0, 0);
+  fill(0, 0, 0);
   textSize(35); // Font size
   textAlign(CENTER, CENTER); // Center align both horizontally and vertically
   textLeading(40); // Line height for text
-  text("IT'S JUST A PHASE!\nYOU'RE JUST EXPERIMENTING!", width/2, height/4); // Note that \n means "new line"
-  
+  text("IT'S JUST A PHASE!\nYOU'RE JUST EXPERIMENTING! \n JUST COME OUT OF THE CLOSET ALREADY!", width/2, height/4); // Note that \n means "new line"
+
 
   //update/display the action of the hero 
   hero.update();
   hero.display();
 
-
- 
+  //update/display the shields
+  leftShield.update();
+  leftShield.display();
+  middleShield.update();
+  middleShield.display();
+  rightShield.update();
+  rightShield.display();
 }
 
 void keyPressed() {

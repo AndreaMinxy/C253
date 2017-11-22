@@ -26,6 +26,14 @@ class Blast {
     if (y > width || x<0) {
       return true;
     }
+    
+    return false;
+  }
+  
+  boolean collide(Shield shield){
+    if(dist(x, y, shield.x, shield.y) < 10){
+      return true;
+    }
     return false;
   }
 

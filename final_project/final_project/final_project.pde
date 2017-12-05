@@ -9,6 +9,9 @@ Hero hero;
 Shield leftShield;
 Shield middleShield;
 Shield rightShield;
+Enemy enemy1;
+Enemy enemy2;
+Enemy enemy3;
 
 //defining the array list for the bullets/blasts
 ArrayList <Blast> allBlast = new ArrayList<Blast>();
@@ -16,12 +19,6 @@ ArrayList <Blast> allBlast = new ArrayList<Blast>();
 //setting up the interactive text
 // Font
 PFont font;
-// The string to work with
-String prodString1 = "ITS JUST A PHASE";
-
-
-// An array of Letters to represent the string on screen
-Letter[] letters;
 
 void setup() {
 
@@ -39,30 +36,16 @@ void setup() {
   font = createFont("Helvetica", 32, true);
   textMode(CENTER);
   textFont(font);
+  //define the enemy class objects
+  enemy1 = new Enemy(width/2, 50, "IT IS JUST A PHASE");
+  enemy2 = new Enemy(width/2, 150, "YOU ARE JUST EXPERIMENTING");
+  enemy3 = new Enemy(width/2, 250, "BISEXUALITY IS NOT REAL");
 
 
-  // Create an array to store individual Letter objects
-  // for each character in our string
-  letters = new Letter[prodString1.length()];
 
 
 
-  // Starting position on the screen for displaying the string
-  int x = width/2;
-  int y = 200;
 
-  // Now go through each character in the string and 
-  // store a new Letter object for it.
-  // Set its x such that it will be nicely kerned
-  // based on the width of the character in the current font.
-  for (int i = 0; i < prodString1.length(); i++) {
-    letters[i] = new Letter(prodString1.charAt(i));
-    letters[i].setPosition(x, y);
-    // Here we calculate the width of the current character
-    // and update x so the next character will be drawn
-    // after it!
-    x += textWidth(prodString1.charAt(i));
-  }
 }
 
 
@@ -71,25 +54,11 @@ void draw() {
   //redraw the background within each frame
   background(255);
 
-  // Go through all the Letters and use update()
-  // to change their positions based on the mouse
-  // and display() to draw them on the screen
-  /*for (int i = 0; i < letters.length; i++) {
-   letters[i].update();
-   letters[i].display();
-   
-   }*/
 
-  for (int i = 0; i < letters.length; i++) {
-    letters[i].update();
-    //letters[i].display();
-    if (letters[i].x < 0 || letters[i].x > width) {
-      for (int j = 0; j < letters.length; j++) {
-        letters[j].vx = -letters[j].vx;
-        letters[j].y += 20;
-      }
-    }
-  }
+  //update enemy
+  enemy1.update();
+  enemy2.update();
+  enemy3.update();
 
   //update/display the action of the hero 
   hero.update();
@@ -103,7 +72,7 @@ void draw() {
   rightShield.update();
   rightShield.display();
 
-  //update/display the string of letters
+ 
 }
 
 void keyPressed() {

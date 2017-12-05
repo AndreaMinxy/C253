@@ -70,6 +70,20 @@ class Blast {
     }
     return false;
   }
+  
+  boolean collide(Hero hero) {
+    // Calculate possible overlaps with the letters side by side
+    boolean insideLeft = (x + SIZE/2 > hero.x - hero.SIZE/2);
+    boolean insideRight = (x - SIZE/2 < hero.x + hero.SIZE/2);
+    boolean insideTop = (y + SIZE/2 > hero.y - hero.SIZE/2);            
+    boolean insideBottom = (y - SIZE/2 < hero.y + hero.SIZE/2);
+
+    // Check if the ball overlaps with the paddle
+    if (insideLeft && insideRight && insideTop && insideBottom) {
+      return true;
+    }
+    return false;
+  }
 
   void display() {
     fill(#E828D2);

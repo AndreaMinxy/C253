@@ -16,11 +16,11 @@ class Hero {
   int SIZE = 60;
 
   // The location of the flag
-  int x;
-  int y;
+  float x;
+  float y;
 
   // The velocity of the flag
-  int vx;
+  float vx;
 
   //the keys that makes the avatar move
   char leftKey;
@@ -28,7 +28,7 @@ class Hero {
 
   //setting up the constructors
 
-  Hero(int _x, int _y, char _leftKey, char _rightKey, char _shootKey) {
+  Hero(float _x, float _y, char _leftKey, char _rightKey, char _shootKey) {
 
     x =_x;
     y = _y;
@@ -48,8 +48,8 @@ class Hero {
     //load the image
     Bisexual =loadImage("flag02.png");
 
-    //cal the handle blast function
-    handleBlast();
+    //call the shoot blast function
+    shootBlast();
   }
 
   void display() {
@@ -59,14 +59,28 @@ class Hero {
     image(Bisexual, x, y, SIZE, SIZE);
   }
 
-  void handleBlast() {
-    //check the list of dots and update thei movement and display their form
+//make the blasts appear
+  void shootBlast() {
+    //check the list of blasts and update thei movement and display their form
     for (int i = 0; i < allBlast.size(); i++) { 
       if (allBlast.get(i).update()) {
         allBlast.remove(i);
       } else {
         allBlast.get(i).display();
       }
+    }
+  }
+  
+  //check if hero got hit by bullet
+  void handleHit() {
+   
+    for (int i = 0; i < allBlast.size(); i++) { 
+      allBlast.get(i).display();
+
+      if (allBlast.get(i).collide(this) && (allBlast.get(i).isPlayerShoot == false)) {
+        allBlast.remove(i);
+      
+   
     }
   }
 

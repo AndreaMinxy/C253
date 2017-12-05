@@ -17,8 +17,9 @@ ArrayList <Blast> allBlast = new ArrayList<Blast>();
 // Font
 PFont font;
 // The string to work with
-String prodString1 = "IT'S JUST A PHASE";
-String prodString2 = "YOU'RE ONLY EXPERIMENTING";
+String prodString1 = "ITS JUST A PHASE";
+
+
 // An array of Letters to represent the string on screen
 Letter[] letters;
 
@@ -28,14 +29,14 @@ void setup() {
   size(1000, 600);
   background(255);
 
-//define the class objects
+  //define the class objects
   hero = new Hero(width/2, 550, 'a', 'l', 'f');
   leftShield = new Shield(200, 500, color(#FFB2F1));
   middleShield = new Shield(475, 500, color(#FFB2F1));
   rightShield = new Shield(750, 500, color(#FFB2F1));
-  
+
   // Set up font
-  font = createFont("Helvetica",32,true);
+  font = createFont("Helvetica", 32, true);
   textMode(CENTER);
   textFont(font);
 
@@ -43,18 +44,20 @@ void setup() {
   // Create an array to store individual Letter objects
   // for each character in our string
   letters = new Letter[prodString1.length()];
-  
+
+
+
   // Starting position on the screen for displaying the string
   int x = width/2;
   int y = 200;
-  
+
   // Now go through each character in the string and 
   // store a new Letter object for it.
   // Set its x such that it will be nicely kerned
   // based on the width of the character in the current font.
   for (int i = 0; i < prodString1.length(); i++) {
     letters[i] = new Letter(prodString1.charAt(i));
-    letters[i].setPosition(x,y);
+    letters[i].setPosition(x, y);
     // Here we calculate the width of the current character
     // and update x so the next character will be drawn
     // after it!
@@ -62,22 +65,24 @@ void setup() {
   }
 }
 
+
+
 void draw() {
   //redraw the background within each frame
   background(255);
-  
+
   // Go through all the Letters and use update()
   // to change their positions based on the mouse
   // and display() to draw them on the screen
   /*for (int i = 0; i < letters.length; i++) {
-    letters[i].update();
-    letters[i].display();
-    
-  }*/
+   letters[i].update();
+   letters[i].display();
+   
+   }*/
 
   for (int i = 0; i < letters.length; i++) {
     letters[i].update();
-    letters[i].display();
+    //letters[i].display();
     if (letters[i].x < 0 || letters[i].x > width) {
       for (int j = 0; j < letters.length; j++) {
         letters[j].vx = -letters[j].vx;
@@ -97,9 +102,8 @@ void draw() {
   middleShield.display();
   rightShield.update();
   rightShield.display();
-  
+
   //update/display the string of letters
-  
 }
 
 void keyPressed() {

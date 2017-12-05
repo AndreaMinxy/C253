@@ -64,8 +64,9 @@ class Hero {
     for (int i = 0; i < allBlast.size(); i++) { 
       if (allBlast.get(i).update()) {
         allBlast.remove(i);
+      } else {
+        allBlast.get(i).display();
       }
-      allBlast.get(i).display();
     }
   }
 
@@ -81,7 +82,7 @@ class Hero {
     }
 
     if (key == shootKey) {
-      allBlast.add(new Blast(x, y));
+      allBlast.add(new Blast(x, y, true));
     }
   }
 

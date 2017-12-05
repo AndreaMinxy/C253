@@ -16,12 +16,12 @@ class Letter {
   char c;
   // Track whether the blast hit the specific letter 
   boolean hit;
-  
+
   //the velocity of the string
   int vx = 1;
   int vy = 1;
-  
-   //determines if the string is off the screen
+
+  //determines if the string is off the screen
   boolean isOffScreen = (x + w/2 < 0 || x - w/2 > width);
 
   // Letter()
@@ -36,6 +36,7 @@ class Letter {
     x = 0;
     y = 0;
 
+    //boolean to check if it gets hit
     hit = false;
 
     // The width of the character is just its textWidth
@@ -54,23 +55,23 @@ class Letter {
     //make the string move
     x+=vx;
     //if the string is off the screen
-    if(isOffScreen){
+    if (isOffScreen) {
       y +=1;
-      x-=vx;  
-  }
-  
-    handleHit();
+      x-=vx;
+    }
 
-    // If the mouse is clicked on this character, then add the distance
-    // the mouse moved to this character's position (so it follows the mouse)
-    if (hit) {
-     
+
+    //checks if letter is shot, letter disspaears and doesnt shoot bullets anymore
+    if (hit != true) {
+      shootBlast();
+      handleHit();
+      display();
     }
   }
 
 
- 
-void display() 
+
+  void display() 
   {
     text(c, x, y);
   }
@@ -80,30 +81,30 @@ void display()
   //
   // A setter for setting the position of the letter.
   // A Letter Setter.
-void setPosition(float tempX, float tempY)
+  void setPosition(float tempX, float tempY)
   {
     x = tempX;
     y = tempY;
   }
-  
+
+//check if letter got hit by bullet
   void handleHit() {
-
-
-    //check the list of dots and update their movement and display their form
-    for (int i = 0; i < allBlast.size(); i++) { 
-            allBlast.get(i).display();
-
-      if (allBlast.get(i).collide(this)) {
-        allBlast.remove(i);
    
-         hit = true;
+    for (int i = 0; i < allBlast.size(); i++) { 
+      allBlast.get(i).display();
+
+      if (allBlast.get(i).collide(this) && (allBlast.get(i).isPlayerShoot)) {
+        allBlast.remove(i);
+
+        hit = true;
       }
-       hit = false;
     }
   }
- 
-  /*void handleBlast() {
-    if(x > 10){
-    allBlast.add(new Blast(x, y));}
-  }*/
+
+  //shoot random bullets
+  void shootBlast() {
+    if (random(0,100) < 0.25) {
+      allBlast.add(new Blast(x, y, false));
+    }
+  }
 } 

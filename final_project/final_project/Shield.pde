@@ -1,11 +1,10 @@
 class Shield {
 
-  //defining the array list for the bullets/blasts
-  ArrayList <Blast> allBlast = new ArrayList<Blast>();
-
   //shield positions
   float x;
   float y;
+  
+  
 
   //width and height
   int WIDTH = 200;
@@ -36,10 +35,11 @@ class Shield {
 
     //check the list of dots and update thei movement and display their form
     for (int i = 0; i < allBlast.size(); i++) { 
+            allBlast.get(i).display();
+
       if (allBlast.get(i).collide(this)) {
         allBlast.remove(i);
       }
-      allBlast.get(i).display();
     }
   }
   //if the blast bulle hits the shield, the colour and the shape starts to fade

@@ -4,8 +4,6 @@
 //x position, a y poistion, a vx and a vy for speed, and a width and  a height
 
 class Hero {
-  //defining the array list for the bullets/blasts
-  ArrayList <Blast> allBlast = new ArrayList<Blast>();
 
   //the keys that makes the blast appear
   char shootKey;

@@ -17,7 +17,8 @@ ArrayList <Blast> allBlast = new ArrayList<Blast>();
 // Font
 PFont font;
 // The string to work with
-String prodString = "IT'S JUST A PHASE";
+String prodString1 = "IT'S JUST A PHASE";
+String prodString2 = "YOU'RE ONLY EXPERIMENTING";
 // An array of Letters to represent the string on screen
 Letter[] letters;
 
@@ -41,7 +42,7 @@ void setup() {
 
   // Create an array to store individual Letter objects
   // for each character in our string
-  letters = new Letter[prodString.length()];
+  letters = new Letter[prodString1.length()];
   
   // Starting position on the screen for displaying the string
   int x = width/2;
@@ -51,13 +52,13 @@ void setup() {
   // store a new Letter object for it.
   // Set its x such that it will be nicely kerned
   // based on the width of the character in the current font.
-  for (int i = 0; i < prodString.length(); i++) {
-    letters[i] = new Letter(prodString.charAt(i));
+  for (int i = 0; i < prodString1.length(); i++) {
+    letters[i] = new Letter(prodString1.charAt(i));
     letters[i].setPosition(x,y);
     // Here we calculate the width of the current character
     // and update x so the next character will be drawn
     // after it!
-    x += textWidth(prodString.charAt(i));
+    x += textWidth(prodString1.charAt(i));
   }
 }
 

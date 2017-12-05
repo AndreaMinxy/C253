@@ -95,6 +95,7 @@ void setPosition(float tempX, float tempY)
 
       if (allBlast.get(i).collide(this)) {
         allBlast.remove(i);
+   
          hit = true;
       }
        hit = false;

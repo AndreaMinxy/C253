@@ -12,6 +12,9 @@ Shield rightShield;
 Enemy enemy1;
 Enemy enemy2;
 Enemy enemy3;
+Life life1;
+Life life2;
+Life life3;
 
 //defining the array list for the bullets/blasts
 ArrayList <Blast> allBlast = new ArrayList<Blast>();
@@ -19,6 +22,9 @@ ArrayList <Blast> allBlast = new ArrayList<Blast>();
 //setting up the interactive text
 // Font
 PFont font;
+
+//setting up the Score
+int SCORE =0;
 
 void setup() {
 
@@ -28,9 +34,12 @@ void setup() {
 
   //define the class objects
   hero = new Hero(width/2, 550, 'a', 'l', 'f');
-  leftShield = new Shield(200, 500, color(#FFB2F1));
-  middleShield = new Shield(475, 500, color(#FFB2F1));
-  rightShield = new Shield(750, 500, color(#FFB2F1));
+  leftShield = new Shield(200, 400, color(#FFB2F1, 255));
+  middleShield = new Shield(475, 400, color(#FFB2F1, 255));
+  rightShield = new Shield(750, 400, color(#FFB2F1, 255));
+  life1 = new Life(900, 20);
+  life2 = new Life(925, 20);
+  life3 = new Life(950, 20);
 
   // Set up font
   font = createFont("Helvetica", 32, true);
@@ -54,7 +63,8 @@ void draw() {
   //redraw the background within each frame
   background(255);
 
-
+//draw score
+text(SCORE, 20, 30);
   //update enemy
   enemy1.update();
   enemy2.update();
@@ -71,6 +81,11 @@ void draw() {
   middleShield.display();
   rightShield.update();
   rightShield.display();
+  
+  //update Life
+  life1.display();
+  life2.display();
+  life3.display();
 
  
 }

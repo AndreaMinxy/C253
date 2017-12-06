@@ -50,6 +50,10 @@ class Hero {
 
     //call the shoot blast function
     shootBlast();
+    
+    //call the handle hit function
+    handleHit();
+    
   }
 
   void display() {
@@ -79,11 +83,11 @@ class Hero {
 
       if (allBlast.get(i).collide(this) && (allBlast.get(i).isPlayerShoot == false)) {
         allBlast.remove(i);
-      
-   
+        
     }
   }
-
+  }
+  
   void keyPressed() {
     // Check if the key is our right key (l)
     if (key == rightKey) {

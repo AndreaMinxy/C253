@@ -87,15 +87,15 @@ class Letter {
     y = tempY;
   }
 
-//check if letter got hit by bullet
+  //check if letter got hit by bullet
   void handleHit() {
-   
+
     for (int i = 0; i < allBlast.size(); i++) { 
       allBlast.get(i).display();
 
       if (allBlast.get(i).collide(this) && (allBlast.get(i).isPlayerShoot)) {
         allBlast.remove(i);
-
+        SCORE +=1;
         hit = true;
       }
     }
@@ -103,7 +103,7 @@ class Letter {
 
   //shoot random bullets
   void shootBlast() {
-    if (random(0,100) < 0.25) {
+    if (random(0, 100) < 0.15) {
       allBlast.add(new Blast(x, y, false));
     }
   }

@@ -12,17 +12,13 @@ Shield rightShield;
 Enemy enemy1;
 Enemy enemy2;
 Enemy enemy3;
-Life life1;
-Life life2;
-Life life3;
+Lives lives;
 
 //defining the array list for the bullets/blasts
 ArrayList <Blast> allBlast = new ArrayList<Blast>();
 
 //setting up the interactive text
-// Font
-//PFont myNiceFont= loadFont("comicsans.vlw");
-PFont font;
+
 
 //setting up the Score
 int SCORE =0;
@@ -41,20 +37,15 @@ void setup() {
   leftShield = new Shield(200, 450, color(#FFB2F1, 255));
   middleShield = new Shield(475, 450, color(#FFB2F1, 255));
   rightShield = new Shield(750, 450, color(#FFB2F1, 255));
-  life1 = new Life(900, 20);
-  life2 = new Life(925, 20);
-  life3 = new Life(950, 20);
+  lives = new Lives(950, 20);
 
 // Set up font
   //textFont(myNiceFont);
-  textMode(CENTER);
-  textSize(32);
-  fill(color(#5872FF)); //the fill doesn't work? The font doesn't work?
 
   //define the enemy class objects
-  enemy1 = new Enemy(width/2, 50, "IT IS JUST A PHASE", color(#5872FF));
-  enemy2 = new Enemy(width/2, 150, "YOU ARE JUST EXPERIMENTING", color(#5872FF));
-  enemy3 = new Enemy(width/2, 250, "BISEXUALITY IS NOT REAL", color(#5872FF));
+  enemy1 = new Enemy(width/2, 50, "IT IS JUST A PHASE", color(#5872FF),32);
+  enemy2 = new Enemy(width/2, 150, "YOU ARE JUST EXPERIMENTING", color(#5872FF),32);
+  enemy3 = new Enemy(width/2, 250, "BISEXUALITY IS NOT REAL", color(#5872FF),32);
 }
 
 
@@ -85,12 +76,11 @@ void draw() {
   rightShield.display();
 
   //update Life
-  life1.display();
-  life2.display();
-  life3.display();
+  lives.display();
+  
 
   //triggering the endgame and displaying the winning team
-  if (hero.playerGetsHit >= 3) {
+  if (hero.lives == 0) {
     textAlign(CENTER);
     textSize(100);
     fill(255);

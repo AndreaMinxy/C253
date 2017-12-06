@@ -27,7 +27,7 @@ class Hero {
   char rightKey;
 
   //check how many times the player has been hit by enemy bullets
-  int playerGetsHit = 0;
+  int lives = 3;
 
   //setting up the constructors
 
@@ -60,9 +60,11 @@ class Hero {
 
   void display() {
 
+     if(lives >0){
     //display the image
     imageMode(CENTER);
     image(Bisexual, x, y, SIZE, SIZE);
+     }
   }
 
   //make the blasts appear
@@ -86,8 +88,8 @@ class Hero {
 //if the player gets hit with an enemy bullet, erace the bullet, increase the number of hits by one and change the background red
       if (allBlast.get(i).collide(this) && (allBlast.get(i).isPlayerShoot == false)) {
         allBlast.remove(i);
-        playerGetsHit +=1;
-        background(255, 0, 0);
+        lives -= 1;
+        //background(255, 0, 0);
       }
     }
   }

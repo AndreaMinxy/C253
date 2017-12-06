@@ -87,9 +87,11 @@ class Blast {
   }
 
   void display() {
+    pushStyle();
     fill(#E828D2);
     noStroke();
     rectMode(CENTER);
     rect(x, y, SIZE, SIZE);
+    popStyle();
   }
 }

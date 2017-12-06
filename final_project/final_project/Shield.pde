@@ -4,7 +4,8 @@ class Shield {
   float x;
   float y;
 
-
+  //shiled "strength"
+  int strength = 255;
 
   //width and height
   int WIDTH = 200;
@@ -23,7 +24,7 @@ class Shield {
   }
 
   void display() {
-    fill(shieldColor);
+    fill(shieldColor, strength);
     noStroke();
     rectMode(CENTER);
     rect(x, y, WIDTH, HEIGHT);
@@ -38,9 +39,18 @@ class Shield {
       allBlast.get(i).display();
       //if the shield gets hit with a blast from the player, do nothing
       if (allBlast.get(i).collide(this)) {
+        //if it,s from an enemy
+        if(allBlast.get(i).isPlayerShoot == false){
+          strength-=50;
+        }else if(strength > 0){
+          strength+=50;
+        }
+        strength = constrain(strength, 0, 255);
+        if(strength > 0){
         allBlast.remove(i);
+        }
         
-      }  
+      }
     }
   }
 }

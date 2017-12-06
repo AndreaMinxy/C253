@@ -20,20 +20,21 @@ Life life3;
 ArrayList <Blast> allBlast = new ArrayList<Blast>();
 
 //setting up the interactive text
-  // Font
-  //PFont myNiceFont= loadFont("comicsans.vlw");
+// Font
+//PFont myNiceFont= loadFont("comicsans.vlw");
 PFont font;
 
 //setting up the Score
 int SCORE =0;
+
 //boolean that dtermines when the game is over
 boolean gameIsOver = false;
 
 void setup() {
 
-  //size and colour of the background
+  //size of the background
   size(1000, 600);
-  background(255);
+
 
   //define the class objects
   hero = new Hero(width/2, 550, 'a', 'l', 'f');
@@ -44,24 +45,24 @@ void setup() {
   life2 = new Life(925, 20);
   life3 = new Life(950, 20);
 
-  // Set up font
-  
-  //fill(0, 0, 0);
+// Set up font
   //textFont(myNiceFont);
   textMode(CENTER);
   textSize(32);
+  fill(color(#5872FF)); //the fill doesn't work? The font doesn't work?
 
   //define the enemy class objects
-  enemy1 = new Enemy(width/2, 50, "IT IS JUST A PHASE");
-  enemy2 = new Enemy(width/2, 150, "YOU ARE JUST EXPERIMENTING");
-  enemy3 = new Enemy(width/2, 250, "BISEXUALITY IS NOT REAL");
+  enemy1 = new Enemy(width/2, 50, "IT IS JUST A PHASE", color(#5872FF));
+  enemy2 = new Enemy(width/2, 150, "YOU ARE JUST EXPERIMENTING", color(#5872FF));
+  enemy3 = new Enemy(width/2, 250, "BISEXUALITY IS NOT REAL", color(#5872FF));
 }
 
 
 
 void draw() {
-  //redraw the background within each frame
-  background(255);
+  //redraw the background within each frame (black background)
+ background(0, 0, 0);;
+ 
 
   //draw score
   text(SCORE, 20, 30);
@@ -87,18 +88,16 @@ void draw() {
   life1.display();
   life2.display();
   life3.display();
-  
+
   //triggering the endgame and displaying the winning team
   if (hero.playerGetsHit >= 3) {
     textAlign(CENTER);
     textSize(100);
     fill(255);
-    text("ALIENS WIN!", width/2, 100);
+    text("BI-ERASURE WINS!", width/2, 100);
     noLoop();
     gameIsOver = true;
   }
-
-  
 }
 
 void keyPressed() {

@@ -26,5 +26,11 @@ void display(){
     rect(x, y, w, h);
 }
 
-
+//when the hero gets hit by bullets, a life bar will disappear to indicate how many lives are left
+void loseLife(){
+  //check the playerGetsHit variable
+  for (hero.playerGetsHit =0; hero.playerGetsHit < 3; hero.playerGetsHit++){
+  
+  }
+}
 }

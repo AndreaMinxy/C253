@@ -6,11 +6,15 @@ class Enemy {
   // Starting position on the screen for displaying the string
   float x;
   float y;
+  
+  //color
+  color enemyColor;
 
-  Enemy(float _x, float _y, String prodString) {
+  Enemy(float _x, float _y, String prodString, color _enemyColor) {
 
     x= _x;
     y= _y;
+    enemyColor= _enemyColor;
 
     //Create an array to store individual Letter objects
     // for each character in our string
@@ -41,5 +45,18 @@ class Enemy {
         }
       }
     }
+      
   }
+  
+  //if the sentences touch the shields, the aliens win and the game is over
+  void alienInvasion(){
+  if(y <= 450){
+    textAlign(CENTER);
+    textSize(100);
+    fill(255);
+    text("ALIENS WIN!", width/2, 100);
+    noLoop();
+    gameIsOver = true;
+  }
+}
 }

@@ -34,9 +34,9 @@ void setup() {
 
   //define the class objects
   hero = new Hero(width/2, 550, 'a', 'l', 'f');
-  leftShield = new Shield(200, 400, color(#FFB2F1, 255));
-  middleShield = new Shield(475, 400, color(#FFB2F1, 255));
-  rightShield = new Shield(750, 400, color(#FFB2F1, 255));
+  leftShield = new Shield(200, 450, color(#FFB2F1, 255));
+  middleShield = new Shield(475, 450, color(#FFB2F1, 255));
+  rightShield = new Shield(750, 450, color(#FFB2F1, 255));
   life1 = new Life(900, 20);
   life2 = new Life(925, 20);
   life3 = new Life(950, 20);

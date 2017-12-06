@@ -83,7 +83,7 @@ class Hero {
 
       if (allBlast.get(i).collide(this) && (allBlast.get(i).isPlayerShoot == false)) {
         allBlast.remove(i);
-        
+        background(255, 0,0);
     }
   }
   }

@@ -14,6 +14,7 @@ class Blast {
 
   //check wich blast is being shot
   boolean isPlayerShoot;
+  
 
   //setting up the constructor
   Blast(float _x, float _y, boolean _isPlayerShoot) {

@@ -26,6 +26,9 @@ class Hero {
   char leftKey;
   char rightKey;
 
+  //check how many times the player has been hit by enemy bullets
+  int playerGetsHit = 0;
+
   //setting up the constructors
 
   Hero(float _x, float _y, char _leftKey, char _rightKey, char _shootKey) {
@@ -50,10 +53,9 @@ class Hero {
 
     //call the shoot blast function
     shootBlast();
-    
+
     //call the handle hit function
     handleHit();
-    
   }
 
   void display() {
@@ -63,7 +65,7 @@ class Hero {
     image(Bisexual, x, y, SIZE, SIZE);
   }
 
-//make the blasts appear
+  //make the blasts appear
   void shootBlast() {
     //check the list of blasts and update thei movement and display their form
     for (int i = 0; i < allBlast.size(); i++) { 
@@ -74,20 +76,22 @@ class Hero {
       }
     }
   }
-  
+
   //check if hero got hit by bullet
   void handleHit() {
-   
+
     for (int i = 0; i < allBlast.size(); i++) { 
       allBlast.get(i).display();
 
+//if the player gets hit with an enemy bullet, erace the bullet, increase the number of hits by one and change the background red
       if (allBlast.get(i).collide(this) && (allBlast.get(i).isPlayerShoot == false)) {
         allBlast.remove(i);
-        background(255, 0,0);
+        playerGetsHit +=1;
+        background(255, 0, 0);
+      }
     }
   }
-  }
-  
+
   void keyPressed() {
     // Check if the key is our right key (l)
     if (key == rightKey) {

@@ -20,11 +20,14 @@ Life life3;
 ArrayList <Blast> allBlast = new ArrayList<Blast>();
 
 //setting up the interactive text
-// Font
+  // Font
+  //PFont myNiceFont= loadFont("comicsans.vlw");
 PFont font;
 
 //setting up the Score
 int SCORE =0;
+//boolean that dtermines when the game is over
+boolean gameIsOver = false;
 
 void setup() {
 
@@ -42,19 +45,16 @@ void setup() {
   life3 = new Life(950, 20);
 
   // Set up font
-  font = createFont("Helvetica", 32, true);
+  
+  //fill(0, 0, 0);
+  //textFont(myNiceFont);
   textMode(CENTER);
-  textFont(font);
+  textSize(32);
+
   //define the enemy class objects
   enemy1 = new Enemy(width/2, 50, "IT IS JUST A PHASE");
   enemy2 = new Enemy(width/2, 150, "YOU ARE JUST EXPERIMENTING");
   enemy3 = new Enemy(width/2, 250, "BISEXUALITY IS NOT REAL");
-
-
-
-
-
-
 }
 
 
@@ -63,8 +63,9 @@ void draw() {
   //redraw the background within each frame
   background(255);
 
-//draw score
-text(SCORE, 20, 30);
+  //draw score
+  text(SCORE, 20, 30);
+
   //update enemy
   enemy1.update();
   enemy2.update();
@@ -81,13 +82,23 @@ text(SCORE, 20, 30);
   middleShield.display();
   rightShield.update();
   rightShield.display();
-  
+
   //update Life
   life1.display();
   life2.display();
   life3.display();
+  
+  //triggering the endgame and displaying the winning team
+  if (hero.playerGetsHit >= 3) {
+    textAlign(CENTER);
+    textSize(100);
+    fill(255);
+    text("ALIENS WIN!", width/2, 100);
+    noLoop();
+    gameIsOver = true;
+  }
 
- 
+  
 }
 
 void keyPressed() {

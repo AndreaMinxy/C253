@@ -37,10 +37,10 @@ class Shield {
     for (int i = 0; i < allBlast.size(); i++) { 
       allBlast.get(i).display();
       //if the shield gets hit with a blast from the player, do nothing
-      if (allBlast.get(i).collide(this) && (allBlast.get(i).isPlayerShoot == false)) {
+      if (allBlast.get(i).collide(this)) {
         allBlast.remove(i);
         
-      } 
+      }  
     }
   }
 }

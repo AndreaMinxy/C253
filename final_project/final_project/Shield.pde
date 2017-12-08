@@ -39,16 +39,19 @@ class Shield {
       allBlast.get(i).display();
       //if the shield gets hit with a blast from the player, do nothing
       if (allBlast.get(i).collide(this)) {
-        //if it,s from an enemy
+        //if it's from an enemy
         if(allBlast.get(i).isPlayerShoot == false){
-          strength-=50;
+          strength-=20;
         }else if(strength > 0){
-          strength+=50;
+          strength+=20;
         }
         strength = constrain(strength, 0, 255);
+        //if there's still some strngth left, make sure the bullets dissapear
         if(strength > 0){
         allBlast.remove(i);
         }
+        
+        
         
       }
     }

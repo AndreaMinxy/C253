@@ -10,11 +10,16 @@ class Enemy {
   //color
   color enemyColor;
 
-// Font
-PFont font = createFont("Courier",32);
+  // Font
+  PFont font = createFont("PressStart2P.ttf",20);
+  //PFont font = createFont("Courrier", 32);
 
-//size
+  //size
   int fontSize;
+
+  //the lives of the strings
+  
+
 
   Enemy(float _x, float _y, String prodString, color _enemyColor, int _fontSize) {
 

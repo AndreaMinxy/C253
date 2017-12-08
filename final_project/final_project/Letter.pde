@@ -16,7 +16,7 @@ class Letter {
   char c;
   // Track whether the blast hit the specific letter 
   boolean hit;
-
+  
   //the velocity of the string
   int vx = 1;
   int vy = 1;
@@ -97,13 +97,14 @@ class Letter {
         allBlast.remove(i);
         SCORE +=1;
         hit = true;
+        heroHit.play();
       }
     }
   }
 
   //shoot random bullets
   void shootBlast() {
-    if (random(0, 100) < 0.15) {
+    if (random(0, 100) < 0.05) {
       allBlast.add(new Blast(x, y, false));
     }
   }

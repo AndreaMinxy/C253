@@ -1,25 +1,26 @@
 class Enemy {
 
   // An array of Letters to represent the string on screen
+
   Letter[] letters;
 
+
   // Starting position on the screen for displaying the string
+
   float x;
   float y;
 
+
   //color
+
   color enemyColor;
 
+
   // Font
-  PFont font = createFont("PressStart2P.ttf",20);
-  //PFont font = createFont("Courrier", 32);
+  PFont font = createFont("PressStart2P.ttf", 20);
 
   //size
   int fontSize;
-
-  //the lives of the strings
-  
-
 
   Enemy(float _x, float _y, String prodString, color _enemyColor, int _fontSize) {
 
@@ -28,7 +29,9 @@ class Enemy {
     enemyColor= _enemyColor;
     fontSize = _fontSize;
 
+
     //Create an array to store individual Letter objects
+
     // for each character in our string
     letters = new Letter[prodString.length()];
 
@@ -67,17 +70,20 @@ class Enemy {
       }
       popStyle();
     }
+    alienInvasion();
   }
 
   //if the sentences touch the shields, the aliens win and the game is over
   void alienInvasion() {
-    if (y <= 450) {
-      textAlign(CENTER);
-      textSize(100);
-      fill(255);
-      text("ALIENS WIN!", width/2, 100);
-      noLoop();
-      gameIsOver = true;
+    for (int j = 0; j < letters.length; j++) {
+      if ( letters[j].y >= middleShield.y) {
+        backgroundMusic.stop();
+        textAlign(CENTER);
+        textSize(55);
+        fill(255);
+        text("BI-ERASURE WINS!", width/2, 200);
+        gameIsOver = true;
+      }
     }
   }
 }

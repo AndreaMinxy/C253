@@ -12,6 +12,7 @@ import processing.sound.*;
 SoundFile backgroundMusic;
 SoundFile heroHit;
 SoundFile heroLose;
+SoundFile explodeShield;
 
 //declare the classes
 Hero hero;
@@ -38,6 +39,7 @@ void setup() {
   backgroundMusic = new SoundFile(this, "Chiptune-Roller-Derby.mp3");
   heroHit = new SoundFile(this, "heroHit.wav");
   heroLose = new SoundFile(this, "heroLose.mp3");
+  explodeShield = new SoundFile(this, "explosionShield.wav");
 
   //loop background music
   backgroundMusic.loop();
@@ -67,7 +69,9 @@ void setup() {
 void draw() {
   //redraw the background within each frame (black background)
   background(0, 0, 0);
-
+  
+  //print the enemy's y position
+  println(enemy3.y);
 
   //draw score
   text(SCORE, 20, 30);
@@ -94,6 +98,7 @@ void draw() {
 
 
   //triggering the endgame and displaying the winning team
+  //the hero loses all their lives and the bi-erasure aliens win
   if (hero.lives == 0) {
     backgroundMusic.stop();
     heroLose.play();
@@ -104,8 +109,22 @@ void draw() {
     noLoop();
     gameIsOver = true;
   }
-  
-  if (SCORE >= 66){
+
+
+  //the bi-erasure aliens manage to breach the shields and they win
+  /*if ((enemy1.y >= 300)||(enemy2.y >= 300)||(enemy3.y >= 300)) {
+   backgroundMusic.stop();
+   heroLose.play();
+   textAlign(CENTER);
+   textSize(55);
+   fill(255);
+   text("BI-ERASURE WINS!", width/2, 200);
+   noLoop();
+   gameIsOver = true;
+   }*/
+
+  //the hero manages to shoot all the letters and the bisexual wins
+  if (SCORE >= 66) {
     backgroundMusic.stop();
     textAlign(CENTER);
     textSize(55);
@@ -114,8 +133,6 @@ void draw() {
     noLoop();
     gameIsOver = true;
   }
-  
-  
 }
 
 void keyPressed() {

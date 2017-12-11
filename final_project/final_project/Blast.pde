@@ -42,7 +42,6 @@ class Blast {
   }
 
   boolean collide(Shield shield) {
-    println("check");
     // Calculate possible overlaps with the paddle side by side
     boolean insideLeft = (x + SIZE/2 > shield.x - shield.WIDTH/2);
     boolean insideRight = (x - SIZE/2 < shield.x + shield.WIDTH/2);
@@ -51,14 +50,13 @@ class Blast {
 
     // Check if the ball overlaps with the letters
     if (insideLeft && insideRight && insideTop && insideBottom) {
-      println("collison");
       return true;
     }
     return false;
   }
 
   boolean collide(Letter letter) {
-    println("hit");
+    
     // Calculate possible overlaps with the letters side by side
     boolean insideLeft = (x + SIZE/2 > letter.x - letter.w/2);
     boolean insideRight = (x - SIZE/2 < letter.x + letter.w/2);

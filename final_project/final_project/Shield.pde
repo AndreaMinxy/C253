@@ -41,7 +41,7 @@ class Shield {
       if (allBlast.get(i).collide(this)) {
         //if it's from an enemy
         if(allBlast.get(i).isPlayerShoot == false){
-          strength-=20;
+          strength-=20; 
         }else if(strength > 0){
           strength+=20;
         }
@@ -50,6 +50,11 @@ class Shield {
         if(strength > 0){
         allBlast.remove(i);
         }
+        
+        //play sounds
+        /*if(strength <= 0){
+          explodeShield.play();
+        }*/
         
         
         

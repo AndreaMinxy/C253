@@ -77,12 +77,7 @@ class Enemy {
   void alienInvasion() {
     for (int j = 0; j < letters.length; j++) {
       if ( letters[j].y >= middleShield.y) {
-        backgroundMusic.stop();
-        textAlign(CENTER);
-        textSize(55);
-        fill(255);
-        text("BI-ERASURE WINS!", width/2, 200);
-        gameIsOver = true;
+        bisexualLoses = true;
       }
     }
   }

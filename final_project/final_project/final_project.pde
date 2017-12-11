@@ -33,6 +33,10 @@ int SCORE =0;
 //boolean that dtermines when the game is over
 boolean gameIsOver = false;
 
+//boolean that determines who won the game (bi-erasure or bisexual)
+boolean bisexualWins = false;
+boolean bisexualLoses = false;
+
 void setup() {
 
   //setup the sound
@@ -69,7 +73,7 @@ void setup() {
 void draw() {
   //redraw the background within each frame (black background)
   background(0, 0, 0);
-  
+
   //print the enemy's y position
   println(enemy3.y);
 
@@ -96,10 +100,8 @@ void draw() {
   //update Life
   lives.display();
 
-
-  //triggering the endgame and displaying the winning team
-  //the hero loses all their lives and the bi-erasure aliens win
-  if (hero.lives == 0) {
+  //determining who the winning team is
+  if (bisexualLoses == true) {
     backgroundMusic.stop();
     heroLose.play();
     textAlign(CENTER);
@@ -108,9 +110,29 @@ void draw() {
     text("BI-ERASURE WINS!", width/2, 200);
     noLoop();
     gameIsOver = true;
+  } 
+  
+  if(bisexualWins == true){
+    backgroundMusic.stop();
+    textAlign(CENTER);
+    textSize(55);
+    fill(255);
+    text("BISEXUALITY WINS!", width/2, 200);
+    noLoop();
+    gameIsOver = true;
   }
 
+  //triggering the endgame and displaying the winning team
+  //the hero loses all their lives and the bi-erasure aliens win
+  if (hero.lives == 0) {
+    bisexualLoses = true;
+  }
 
+  //the hero manages to shoot all the letters and the bisexual wins
+  if (SCORE >= 67) {
+    bisexualWins = true;
+  }
+  
   //the bi-erasure aliens manage to breach the shields and they win
   /*if ((enemy1.y >= 300)||(enemy2.y >= 300)||(enemy3.y >= 300)) {
    backgroundMusic.stop();
@@ -122,17 +144,6 @@ void draw() {
    noLoop();
    gameIsOver = true;
    }*/
-
-  //the hero manages to shoot all the letters and the bisexual wins
-  if (SCORE >= 66) {
-    backgroundMusic.stop();
-    textAlign(CENTER);
-    textSize(55);
-    fill(255);
-    text("BISEXUALITY WINS!", width/2, 200);
-    noLoop();
-    gameIsOver = true;
-  }
 }
 
 void keyPressed() {

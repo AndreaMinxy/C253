@@ -37,6 +37,7 @@ boolean gameIsOver = false;
 boolean bisexualWins = false;
 boolean bisexualLoses = false;
 
+
 void setup() {
 
   //setup the sound
@@ -104,22 +105,24 @@ void draw() {
   if (bisexualLoses == true) {
     backgroundMusic.stop();
     heroLose.play();
+    //background(255, 0, 0);
     textAlign(CENTER);
     textSize(55);
     fill(255);
     text("BI-ERASURE WINS!", width/2, 200);
     noLoop();
-    gameIsOver = true;
+    //gameIsOver = true;
   } 
-  
-  if(bisexualWins == true){
+
+  if (bisexualWins == true) {
     backgroundMusic.stop();
+    background(0);
     textAlign(CENTER);
     textSize(55);
     fill(255);
     text("BISEXUALITY WINS!", width/2, 200);
     noLoop();
-    gameIsOver = true;
+    //gameIsOver = true;
   }
 
   //triggering the endgame and displaying the winning team
@@ -129,21 +132,9 @@ void draw() {
   }
 
   //the hero manages to shoot all the letters and the bisexual wins
-  if (SCORE >= 67) {
+  if (SCORE >= 66) {
     bisexualWins = true;
   }
-  
-  //the bi-erasure aliens manage to breach the shields and they win
-  /*if ((enemy1.y >= 300)||(enemy2.y >= 300)||(enemy3.y >= 300)) {
-   backgroundMusic.stop();
-   heroLose.play();
-   textAlign(CENTER);
-   textSize(55);
-   fill(255);
-   text("BI-ERASURE WINS!", width/2, 200);
-   noLoop();
-   gameIsOver = true;
-   }*/
 }
 
 void keyPressed() {

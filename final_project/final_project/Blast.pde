@@ -14,7 +14,7 @@ class Blast {
 
   //check wich blast is being shot
   boolean isPlayerShoot;
-  
+
 
   //setting up the constructor
   Blast(float _x, float _y, boolean _isPlayerShoot) {
@@ -56,7 +56,7 @@ class Blast {
   }
 
   boolean collide(Letter letter) {
-    
+
     // Calculate possible overlaps with the letters side by side
     boolean insideLeft = (x + SIZE/2 > letter.x - letter.w/2);
     boolean insideRight = (x - SIZE/2 < letter.x + letter.w/2);
@@ -69,7 +69,7 @@ class Blast {
     }
     return false;
   }
-  
+
   boolean collide(Hero hero) {
     // Calculate possible overlaps with the letters side by side
     boolean insideLeft = (x + SIZE/2 > hero.x - hero.SIZE/2);

@@ -119,7 +119,22 @@ void draw() {
   if (bisexualWins == true) {
     backgroundMusic.stop();
     heroWin.play();
+    
+    //create the bi flag in the background
+    fill(#FA38E4);
+    stroke(#FA38E4);
+    rectMode(CENTER);
+    rect(167, 200, width/3, 1000);
 
+    fill(#C238FA);
+    stroke(#C238FA);
+    rectMode(CENTER);
+    rect(167+width/3, 200, width/3, 1000);
+
+    fill(#384CFA);
+    stroke(#384CFA);
+    rectMode(CENTER);
+    rect(167+ 2*(width/3), 200, width/3, 1000);
     textAlign(CENTER);
     textSize(55);
     fill(255);

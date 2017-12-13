@@ -12,7 +12,8 @@ import processing.sound.*;
 SoundFile backgroundMusic;
 SoundFile heroHit;
 SoundFile heroLose;
-SoundFile explodeShield;
+SoundFile heroWin;
+
 
 //declare the classes
 Hero hero;
@@ -38,13 +39,14 @@ boolean bisexualWins = false;
 boolean bisexualLoses = false;
 
 
+
 void setup() {
 
   //setup the sound
   backgroundMusic = new SoundFile(this, "Chiptune-Roller-Derby.mp3");
   heroHit = new SoundFile(this, "heroHit.wav");
   heroLose = new SoundFile(this, "heroLose.mp3");
-  explodeShield = new SoundFile(this, "explosionShield.wav");
+  heroWin = new SoundFile(this, "heroWin.mp3");
 
   //loop background music
   backgroundMusic.loop();
@@ -105,22 +107,23 @@ void draw() {
   if (bisexualLoses == true) {
     backgroundMusic.stop();
     heroLose.play();
-    //background(255, 0, 0);
+    background(0);
     textAlign(CENTER);
     textSize(55);
     fill(255);
-    text("BI-ERASURE WINS!", width/2, 200);
+    text("BI-ERASURE WINS!", width/2, height/2);
     noLoop();
     //gameIsOver = true;
   } 
 
   if (bisexualWins == true) {
     backgroundMusic.stop();
-    background(0);
+    heroWin.play();
+
     textAlign(CENTER);
     textSize(55);
     fill(255);
-    text("BISEXUALITY WINS!", width/2, 200);
+    text("BISEXUALITY WINS!", width/2, height/2);
     noLoop();
     //gameIsOver = true;
   }
